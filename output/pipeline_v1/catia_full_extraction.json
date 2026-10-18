@@ -1,0 +1,823 @@
+{
+  "pipeline_version": "1.1-full-extraction",
+  "document": {
+    "name": "Part_b.CATPart",
+    "part_name": "Part_b",
+    "mode": "read_only"
+  },
+  "tree_inventory": {
+    "annotation_set_count": 1,
+    "annotation_count": 11,
+    "annotation_sets": [
+      {
+        "index": 1,
+        "name": "Annotation Set.1",
+        "name_error": null,
+        "annotations": [
+          {
+            "index": 1,
+            "properties": {
+              "Name": {
+                "status": "read_successfully",
+                "value": "Flatness.1",
+                "error": null
+              },
+              "Type": {
+                "status": "read_successfully",
+                "value": "FTA_Flatness",
+                "error": null
+              },
+              "SuperType": {
+                "status": "read_successfully",
+                "value": "FTA_Form",
+                "error": null
+              },
+              "TPSStatus": {
+                "status": "read_successfully",
+                "value": "OK",
+                "error": null
+              }
+            }
+          },
+          {
+            "index": 2,
+            "properties": {
+              "Name": {
+                "status": "read_successfully",
+                "value": "Linear Size.1",
+                "error": null
+              },
+              "Type": {
+                "status": "read_successfully",
+                "value": "FTA_LinearDimension",
+                "error": null
+              },
+              "SuperType": {
+                "status": "read_successfully",
+                "value": "FTA_Dimension",
+                "error": null
+              },
+              "TPSStatus": {
+                "status": "read_successfully",
+                "value": "OK",
+                "error": null
+              }
+            }
+          },
+          {
+            "index": 3,
+            "properties": {
+              "Name": {
+                "status": "read_successfully",
+                "value": "Geometrical Tolerance.1",
+                "error": null
+              },
+              "Type": {
+                "status": "read_successfully",
+                "value": "FTA_NonSemanticGDT",
+                "error": null
+              },
+              "SuperType": {
+                "status": "read_successfully",
+                "value": "FTA_NonSemantic",
+                "error": null
+              },
+              "TPSStatus": {
+                "status": "read_successfully",
+                "value": "OK",
+                "error": null
+              }
+            }
+          },
+          {
+            "index": 4,
+            "properties": {
+              "Name": {
+                "status": "read_successfully",
+                "value": "Simple Datum.2",
+                "error": null
+              },
+              "Type": {
+                "status": "read_successfully",
+                "value": "FTA_DatumSimple",
+                "error": null
+              },
+              "SuperType": {
+                "status": "read_successfully",
+                "value": "FTA_Datum",
+                "error": null
+              },
+              "TPSStatus": {
+                "status": "read_successfully",
+                "value": "OK",
+                "error": null
+              }
+            }
+          },
+          {
+            "index": 5,
+            "properties": {
+              "Name": {
+                "status": "read_successfully",
+                "value": "Linear Size.2",
+                "error": null
+              },
+              "Type": {
+                "status": "read_successfully",
+                "value": "FTA_LinearDimension",
+                "error": null
+              },
+              "SuperType": {
+                "status": "read_successfully",
+                "value": "FTA_Dimension",
+                "error": null
+              },
+              "TPSStatus": {
+                "status": "read_successfully",
+                "value": "OK",
+                "error": null
+              }
+            }
+          },
+          {
+            "index": 6,
+            "properties": {
+              "Name": {
+                "status": "read_successfully",
+                "value": "Simple Datum.3",
+                "error": null
+              },
+              "Type": {
+                "status": "read_successfully",
+                "value": "FTA_DatumSimple",
+                "error": null
+              },
+              "SuperType": {
+                "status": "read_successfully",
+                "value": "FTA_Datum",
+                "error": null
+              },
+              "TPSStatus": {
+                "status": "read_successfully",
+                "value": "OK",
+                "error": null
+              }
+            }
+          },
+          {
+            "index": 7,
+            "properties": {
+              "Name": {
+                "status": "read_successfully",
+                "value": "Simple Datum.4",
+                "error": null
+              },
+              "Type": {
+                "status": "read_successfully",
+                "value": "FTA_DatumSimple",
+                "error": null
+              },
+              "SuperType": {
+                "status": "read_successfully",
+                "value": "FTA_Datum",
+                "error": null
+              },
+              "TPSStatus": {
+                "status": "read_successfully",
+                "value": "OK",
+                "error": null
+              }
+            }
+          },
+          {
+            "index": 8,
+            "properties": {
+              "Name": {
+                "status": "read_successfully",
+                "value": "Linear Size.3",
+                "error": null
+              },
+              "Type": {
+                "status": "read_successfully",
+                "value": "FTA_LinearDimension",
+                "error": null
+              },
+              "SuperType": {
+                "status": "read_successfully",
+                "value": "FTA_Dimension",
+                "error": null
+              },
+              "TPSStatus": {
+                "status": "read_successfully",
+                "value": "OK",
+                "error": null
+              }
+            }
+          },
+          {
+            "index": 9,
+            "properties": {
+              "Name": {
+                "status": "read_successfully",
+                "value": "Datum Reference Frame.1",
+                "error": null
+              },
+              "Type": {
+                "status": "read_successfully",
+                "value": "FTA_ReferenceFrame",
+                "error": null
+              },
+              "SuperType": {
+                "status": "read_successfully",
+                "value": "FTA_Datum",
+                "error": null
+              },
+              "TPSStatus": {
+                "status": "read_successfully",
+                "value": "OK",
+                "error": null
+              }
+            }
+          },
+          {
+            "index": 10,
+            "properties": {
+              "Name": {
+                "status": "read_successfully",
+                "value": "Position.1",
+                "error": null
+              },
+              "Type": {
+                "status": "read_successfully",
+                "value": "FTA_TruePosition",
+                "error": null
+              },
+              "SuperType": {
+                "status": "read_successfully",
+                "value": "FTA_Position",
+                "error": null
+              },
+              "TPSStatus": {
+                "status": "read_successfully",
+                "value": "OK",
+                "error": null
+              }
+            }
+          },
+          {
+            "index": 11,
+            "properties": {
+              "Name": {
+                "status": "read_successfully",
+                "value": "Geometrical Tolerance.2",
+                "error": null
+              },
+              "Type": {
+                "status": "read_successfully",
+                "value": "FTA_NonSemanticGDT",
+                "error": null
+              },
+              "SuperType": {
+                "status": "read_successfully",
+                "value": "FTA_NonSemantic",
+                "error": null
+              },
+              "TPSStatus": {
+                "status": "read_successfully",
+                "value": "OK",
+                "error": null
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "extractor_results": {
+    "part_parameters_and_features": {
+      "status": "success",
+      "data": {
+        "document_name": "Part_b.CATPart",
+        "part_name": "Part_b",
+        "parameters": [
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\FirstAngle",
+            "value": "360deg"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\SecondAngle",
+            "value": "0deg"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Activity",
+            "value": "true"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\AbsoluteAxis\\Activity",
+            "value": "true"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Coincidence.1\\Activity",
+            "value": "true"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Coincidence.1\\Mode",
+            "value": "CstAttr_Mode_Constrained"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Parallelism.2\\Activity",
+            "value": "true"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Parallelism.2\\Mode",
+            "value": "CstAttr_Mode_Constrained"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Parallelism.3\\Activity",
+            "value": "true"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Parallelism.3\\Mode",
+            "value": "CstAttr_Mode_Constrained"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Parallelism.4\\Activity",
+            "value": "true"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Parallelism.4\\Mode",
+            "value": "CstAttr_Mode_Constrained"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Parallelism.5\\Activity",
+            "value": "true"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Parallelism.5\\Mode",
+            "value": "CstAttr_Mode_Constrained"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Coincidence.10\\Activity",
+            "value": "true"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Coincidence.10\\Mode",
+            "value": "CstAttr_Mode_Constrained"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Parallelism.11\\Activity",
+            "value": "true"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Parallelism.11\\Mode",
+            "value": "CstAttr_Mode_Constrained"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Length.12\\Length",
+            "value": "9.98mm"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Length.12\\Activity",
+            "value": "true"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Length.12\\Mode",
+            "value": "CstAttr_Mode_Constrained"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Length.16\\Length",
+            "value": "30mm"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Length.16\\Activity",
+            "value": "true"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Length.16\\Mode",
+            "value": "CstAttr_Mode_Constrained"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Offset.18\\Offset",
+            "value": "8mm"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Offset.18\\Activity",
+            "value": "true"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Offset.18\\Mode",
+            "value": "CstAttr_Mode_Constrained"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Offset.24\\Offset",
+            "value": "20mm"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Offset.24\\Activity",
+            "value": "true"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Offset.24\\Mode",
+            "value": "CstAttr_Mode_Constrained"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Parallelism.28\\Activity",
+            "value": "true"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Sketch.1\\Parallelism.28\\Mode",
+            "value": "CstAttr_Mode_Constrained"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\ThickThin1",
+            "value": "1mm"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\ThickThin2",
+            "value": "0mm"
+          },
+          {
+            "name": "Part_b\\PartBody\\Shaft.1\\Activity",
+            "value": "true"
+          },
+          {
+            "name": "Part_b\\PartBody\\Sketch.3\\Activity",
+            "value": "true"
+          },
+          {
+            "name": "Part_b\\PartBody\\Sketch.3\\AbsoluteAxis\\Activity",
+            "value": "true"
+          },
+          {
+            "name": "Part_b\\PartBody\\Sketch.3\\Coincidence.29\\Activity",
+            "value": "true"
+          },
+          {
+            "name": "Part_b\\PartBody\\Sketch.3\\Coincidence.29\\Mode",
+            "value": "CstAttr_Mode_Constrained"
+          },
+          {
+            "name": "Part_b\\PartBody\\Hole.1\\HoleLimit.1\\Depth",
+            "value": "16mm"
+          },
+          {
+            "name": "Part_b\\PartBody\\Hole.1\\HoleLimit.1\\Angle",
+            "value": "120deg"
+          },
+          {
+            "name": "Part_b\\PartBody\\Hole.1\\HoleLimit.1\\Offset",
+            "value": "0mm"
+          },
+          {
+            "name": "Part_b\\PartBody\\Hole.1\\Sketch.4\\Activity",
+            "value": "true"
+          },
+          {
+            "name": "Part_b\\PartBody\\Hole.1\\Sketch.4\\AbsoluteAxis\\Activity",
+            "value": "true"
+          },
+          {
+            "name": "Part_b\\PartBody\\Hole.1\\Diameter",
+            "value": "12.2mm"
+          },
+          {
+            "name": "Part_b\\PartBody\\Hole.1\\Tap depth",
+            "value": "10mm"
+          },
+          {
+            "name": "Part_b\\PartBody\\Hole.1\\Tap diameter",
+            "value": "11mm"
+          },
+          {
+            "name": "Part_b\\PartBody\\Hole.1\\Pitch",
+            "value": "1mm"
+          },
+          {
+            "name": "Part_b\\PartBody\\Hole.1\\Thread Description",
+            "value": ""
+          },
+          {
+            "name": "Part_b\\PartBody\\Hole.1\\Activity",
+            "value": "true"
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Flatness.1\\TolNumValue",
+            "value": "0.02mm"
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Flatness.1\\TolTabValue",
+            "value": ""
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Flatness.1\\ResNumValue",
+            "value": "0.05mm"
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Flatness.1\\ResTabValue",
+            "value": ""
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Flatness.1\\UnitBasisLength1",
+            "value": "20mm"
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Flatness.1\\UnitBasisLength2",
+            "value": "20mm"
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Linear Size.1\\UpperLimit",
+            "value": "0.03mm"
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Linear Size.1\\LowerLimit",
+            "value": "-0.03mm"
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Linear Size.1\\TabulatedValue",
+            "value": "H7"
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Linear Size.1\\SimpleLimitValue",
+            "value": "0mm"
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Simple Datum.2\\Label",
+            "value": "B"
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Linear Size.2\\UpperLimit",
+            "value": "0.02mm"
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Linear Size.2\\LowerLimit",
+            "value": "-0.02mm"
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Linear Size.2\\TabulatedValue",
+            "value": "H7"
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Linear Size.2\\SimpleLimitValue",
+            "value": "0mm"
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Simple Datum.3\\Label",
+            "value": "D"
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Simple Datum.4\\Label",
+            "value": "A"
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Linear Size.3\\UpperLimit",
+            "value": "0.1mm"
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Linear Size.3\\LowerLimit",
+            "value": "-0.1mm"
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Linear Size.3\\TabulatedValue",
+            "value": "H7"
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Linear Size.3\\SimpleLimitValue",
+            "value": "0mm"
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Datum Reference Frame.1\\Box1",
+            "value": "A"
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Datum Reference Frame.1\\Box2",
+            "value": "B"
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Datum Reference Frame.1\\Box3",
+            "value": ""
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Position.1\\TolNumValue",
+            "value": "0.1mm"
+          },
+          {
+            "name": "Part_b\\Annotation Set.1\\Position.1\\TolTabValue",
+            "value": ""
+          },
+          {
+            "name": "Part_b\\Part Number",
+            "value": "Part_b"
+          },
+          {
+            "name": "Part_b\\Nomenclature",
+            "value": ""
+          },
+          {
+            "name": "Part_b\\Revision",
+            "value": ""
+          },
+          {
+            "name": "Part_b\\Product Description",
+            "value": ""
+          },
+          {
+            "name": "Part_b\\Definition",
+            "value": ""
+          }
+        ],
+        "features": [
+          {
+            "name": "PartBody",
+            "category": "Body"
+          }
+        ],
+        "warnings": []
+      },
+      "error": null
+    },
+    "semantic_gdt": {
+      "status": "success",
+      "count": 2,
+      "data": [
+        {
+          "name": "Flatness.1",
+          "gdt_type": "FTA_Flatness",
+          "tolerance_value": 0.02,
+          "tolerance_form": "VolumeGeneratedByPlaneShift",
+          "material_modifier": null,
+          "datum_reference_frame": null
+        },
+        {
+          "name": "Position.1",
+          "gdt_type": "FTA_TruePosition",
+          "tolerance_value": 0.1,
+          "tolerance_form": "VolumeGeneratedByPlaneShift",
+          "material_modifier": null,
+          "datum_reference_frame": {
+            "primary": "A",
+            "secondary": "B",
+            "tertiary": null
+          }
+        }
+      ],
+      "error": null
+    },
+    "datums": {
+      "status": "success",
+      "count": 3,
+      "data": [
+        {
+          "annotation_name": "Simple Datum.2",
+          "datum_name": "CATIADatumSimple0",
+          "label": "B"
+        },
+        {
+          "annotation_name": "Simple Datum.3",
+          "datum_name": "CATIADatumSimple1",
+          "label": "D"
+        },
+        {
+          "annotation_name": "Simple Datum.4",
+          "datum_name": "CATIADatumSimple2",
+          "label": "A"
+        }
+      ],
+      "error": null
+    },
+    "dimensions": {
+      "status": "success",
+      "count": 3,
+      "data": [
+        {
+          "annotation_name": "Linear Size.1",
+          "dimension_name": "Dimension.5",
+          "dimension_type": 11,
+          "nominal_value": 19.96,
+          "tolerance_type": 1,
+          "tolerance_name": "TOL_NUM2",
+          "upper_tolerance": 0.03,
+          "lower_tolerance": -0.03,
+          "unit": null
+        },
+        {
+          "annotation_name": "Linear Size.2",
+          "dimension_name": "Dimension.7",
+          "dimension_type": 11,
+          "nominal_value": 12.2,
+          "tolerance_type": 1,
+          "tolerance_name": "TOL_NUM2",
+          "upper_tolerance": 0.02,
+          "lower_tolerance": -0.02,
+          "unit": null
+        },
+        {
+          "annotation_name": "Linear Size.3",
+          "dimension_name": "Dimension.9",
+          "dimension_type": 0,
+          "nominal_value": 30.0,
+          "tolerance_type": 0,
+          "tolerance_name": null,
+          "upper_tolerance": null,
+          "lower_tolerance": null,
+          "unit": null
+        }
+      ],
+      "error": null
+    },
+    "nonsemantic_gdt": {
+      "status": "success",
+      "count": 2,
+      "data": [
+        {
+          "annotation_name": "Geometrical Tolerance.1",
+          "annotation_type": "FTA_NonSemanticGDT",
+          "super_type": "FTA_NonSemantic",
+          "tps_status": "OK",
+          "surfaces": [
+            "Part_b/PartBody/Shaft.1/Face"
+          ],
+          "extraction_status": "metadata_read_successfully",
+          "property_diagnostics": {
+            "name": {
+              "status": "read_successfully",
+              "value_type": "str",
+              "error": null
+            },
+            "type": {
+              "status": "read_successfully",
+              "value_type": "str",
+              "error": null
+            },
+            "super_type": {
+              "status": "read_successfully",
+              "value_type": "str",
+              "error": null
+            },
+            "tps_status": {
+              "status": "read_successfully",
+              "value_type": "str",
+              "error": null
+            },
+            "surfaces": {
+              "status": "read_successfully",
+              "value_type": "list",
+              "error": null
+            }
+          }
+        },
+        {
+          "annotation_name": "Geometrical Tolerance.2",
+          "annotation_type": "FTA_NonSemanticGDT",
+          "super_type": "FTA_NonSemantic",
+          "tps_status": "OK",
+          "surfaces": [
+            "Part_b/PartBody/Shaft.1/Face"
+          ],
+          "extraction_status": "metadata_read_successfully",
+          "property_diagnostics": {
+            "name": {
+              "status": "read_successfully",
+              "value_type": "str",
+              "error": null
+            },
+            "type": {
+              "status": "read_successfully",
+              "value_type": "str",
+              "error": null
+            },
+            "super_type": {
+              "status": "read_successfully",
+              "value_type": "str",
+              "error": null
+            },
+            "tps_status": {
+              "status": "read_successfully",
+              "value_type": "str",
+              "error": null
+            },
+            "surfaces": {
+              "status": "read_successfully",
+              "value_type": "list",
+              "error": null
+            }
+          }
+        }
+      ],
+      "error": null
+    },
+    "reference_frames": {
+      "status": "success",
+      "count": 1,
+      "data": [
+        {
+          "annotation_name": "Datum Reference Frame.1",
+          "primary": "A",
+          "secondary": "B",
+          "tertiary": null
+        }
+      ],
+      "error": null
+    }
+  },
+  "engineering_approval": false
+}

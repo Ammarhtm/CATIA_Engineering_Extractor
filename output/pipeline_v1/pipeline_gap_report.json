@@ -1,0 +1,75 @@
+{
+  "pipeline_version": "1.7-com-gap-report",
+  "document": "Part_b.CATPart",
+  "mode": "read_only",
+  "source_files": {
+    "full_extraction": "output\\pipeline_v1\\catia_full_extraction.json",
+    "inventory": "output\\pipeline_v1\\catia_inventory.json",
+    "gdt_objects": "output\\pipeline_v1\\gdt_object_diagnostics.json",
+    "gdt_text_access": "output\\pipeline_v1\\gdt_text_access.json",
+    "gdt_remaining_properties": "output\\pipeline_v1\\gdt_remaining_properties.json"
+  },
+  "source_errors": {},
+  "counts": {
+    "source_files_expected": 5,
+    "source_files_loaded": 5,
+    "nonsemantic_gdt_annotations_reviewed": 2,
+    "annotations_requiring_visual_extraction": 2
+  },
+  "gaps": [
+    {
+      "annotation_name": "Geometrical Tolerance.1",
+      "annotation_type": "FTA_NonSemanticGDT",
+      "com_metadata_available": true,
+      "known_metadata": [
+        "Name",
+        "Type",
+        "SuperType",
+        "TPSStatus",
+        "GetSurfacesCount",
+        "GetSurfaces"
+      ],
+      "unresolved_items": [
+        {
+          "item": "geometric_symbol",
+          "status": "not_extracted",
+          "next_action": "OpenCV + OCR candidate extraction"
+        },
+        {
+          "item": "displayed_tolerance_frame_content",
+          "status": "not_extracted_by_current_com_tests",
+          "next_action": "OpenCV + OCR candidate extraction"
+        }
+      ],
+      "engineering_approval": false
+    },
+    {
+      "annotation_name": "Geometrical Tolerance.2",
+      "annotation_type": "FTA_NonSemanticGDT",
+      "com_metadata_available": true,
+      "known_metadata": [
+        "Name",
+        "Type",
+        "SuperType",
+        "TPSStatus",
+        "GetSurfacesCount",
+        "GetSurfaces"
+      ],
+      "unresolved_items": [
+        {
+          "item": "geometric_symbol",
+          "status": "not_extracted",
+          "next_action": "OpenCV + OCR candidate extraction"
+        },
+        {
+          "item": "displayed_tolerance_frame_content",
+          "status": "not_extracted_by_current_com_tests",
+          "next_action": "OpenCV + OCR candidate extraction"
+        }
+      ],
+      "engineering_approval": false
+    }
+  ],
+  "next_pipeline": "OpenCV + OCR",
+  "engineering_approval": false
+}

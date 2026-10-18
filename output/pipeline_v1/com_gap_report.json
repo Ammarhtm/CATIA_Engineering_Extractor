@@ -1,0 +1,43 @@
+{
+  "pipeline_version": "1.0-com-gap-report",
+  "document": "Part_b.CATPart",
+  "mode": "read_only",
+  "unresolved_annotations": [
+    {
+      "annotation_name": "Geometrical Tolerance.1",
+      "annotation_type": "FTA_NonSemanticGDT",
+      "known_metadata": {
+        "super_type": "FTA_NonSemantic",
+        "tps_status": "OK",
+        "surfaces": [
+          "Part_b/PartBody/Shaft.1/Face"
+        ]
+      },
+      "unresolved_items": [
+        "geometric_symbol",
+        "displayed_tolerance_frame_content"
+      ],
+      "next_action": "Visual extraction required after COM pipeline review",
+      "engineering_approval": false
+    },
+    {
+      "annotation_name": "Geometrical Tolerance.2",
+      "annotation_type": "FTA_NonSemanticGDT",
+      "known_metadata": {
+        "super_type": "FTA_NonSemantic",
+        "tps_status": "OK",
+        "surfaces": [
+          "Part_b/PartBody/Shaft.1/Face"
+        ]
+      },
+      "unresolved_items": [
+        "geometric_symbol",
+        "displayed_tolerance_frame_content"
+      ],
+      "next_action": "Visual extraction required after COM pipeline review",
+      "engineering_approval": false
+    }
+  ],
+  "failed_extractors": [],
+  "engineering_approval": false
+}
