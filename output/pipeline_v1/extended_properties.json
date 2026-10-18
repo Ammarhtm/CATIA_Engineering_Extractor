@@ -1,0 +1,1317 @@
+{
+  "pipeline_version": "1.2-properties-diagnostic",
+  "document": "Part_b.CATPart",
+  "mode": "read_only",
+  "annotation_count": 11,
+  "annotations": [
+    {
+      "annotation_name": "Flatness.1",
+      "annotation_type": "FTA_Flatness",
+      "annotation_set": "Annotation Set.1",
+      "properties": {
+        "Name": {
+          "status": "read_successfully",
+          "value": "Flatness.1",
+          "error": null
+        },
+        "Type": {
+          "status": "read_successfully",
+          "value": "FTA_Flatness",
+          "error": null
+        },
+        "SuperType": {
+          "status": "read_successfully",
+          "value": "FTA_Form",
+          "error": null
+        },
+        "TPSStatus": {
+          "status": "read_successfully",
+          "value": "OK",
+          "error": null
+        },
+        "Text": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method Text failed', None, 0, -2147467259), None)"
+        },
+        "Noa": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method Noa failed', None, 0, -2147467259), None)"
+        },
+        "ReferenceFrame": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ReferenceFrame failed', None, 0, -2147467259), None)"
+        },
+        "DatumTarget": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method DatumTarget failed', None, 0, -2147467259), None)"
+        },
+        "ToleranceZone": {
+          "status": "com_object_returned",
+          "value": {
+            "python_type": "CDispatch",
+            "repr": "<COMObject ToleranceZone>"
+          },
+          "error": null
+        },
+        "Dimension3D": {
+          "status": "read_successfully_empty",
+          "value": null,
+          "error": null
+        },
+        "IsAToleranceZone": {
+          "status": "read_successfully",
+          "value": true,
+          "error": null
+        },
+        "IsAnAssociatedRefFrame": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "IsAToleranceUnitBasisValue": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "ToleranceUnitBasisValue": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ToleranceUnitBasisValue failed', None, 0, -2147467259), None)"
+        },
+        "IsADefaultAnnotation": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "DefaultAnnotation": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method DefaultAnnotation failed', None, 0, -2147467259), None)"
+        },
+        "AssociatedRefFrame": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method AssociatedRefFrame failed', None, 0, -2147467259), None)"
+        },
+        "TolerancePerUnitBasisRestrictiveValue": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method TolerancePerUnitBasisRestrictiveValue failed', None, 0, -2147467259), None)"
+        },
+        "ShiftedProfileTolerance": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ShiftedProfileTolerance failed', None, 0, -2147467259), None)"
+        },
+        "CompositeTolerance": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method CompositeTolerance failed', None, 0, -2147467259), None)"
+        },
+        "ProjectedToleranceZone": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ProjectedToleranceZone failed', None, 0, -2147467259), None)"
+        },
+        "GetSurfacesCount": {
+          "status": "read_successfully",
+          "value": 1.0,
+          "error": null
+        }
+      }
+    },
+    {
+      "annotation_name": "Linear Size.1",
+      "annotation_type": "FTA_LinearDimension",
+      "annotation_set": "Annotation Set.1",
+      "properties": {
+        "Name": {
+          "status": "read_successfully",
+          "value": "Linear Size.1",
+          "error": null
+        },
+        "Type": {
+          "status": "read_successfully",
+          "value": "FTA_LinearDimension",
+          "error": null
+        },
+        "SuperType": {
+          "status": "read_successfully",
+          "value": "FTA_Dimension",
+          "error": null
+        },
+        "TPSStatus": {
+          "status": "read_successfully",
+          "value": "OK",
+          "error": null
+        },
+        "Text": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method Text failed', None, 0, -2147467259), None)"
+        },
+        "Noa": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method Noa failed', None, 0, -2147467259), None)"
+        },
+        "ReferenceFrame": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ReferenceFrame failed', None, 0, -2147467259), None)"
+        },
+        "DatumTarget": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method DatumTarget failed', None, 0, -2147467259), None)"
+        },
+        "ToleranceZone": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ToleranceZone failed', None, 0, -2147467259), None)"
+        },
+        "Dimension3D": {
+          "status": "com_object_returned",
+          "value": {
+            "python_type": "CDispatch",
+            "repr": "<COMObject Dimension3D>"
+          },
+          "error": null
+        },
+        "IsAToleranceZone": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "IsAnAssociatedRefFrame": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "IsAToleranceUnitBasisValue": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "ToleranceUnitBasisValue": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ToleranceUnitBasisValue failed', None, 0, -2147467259), None)"
+        },
+        "IsADefaultAnnotation": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "DefaultAnnotation": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method DefaultAnnotation failed', None, 0, -2147467259), None)"
+        },
+        "AssociatedRefFrame": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method AssociatedRefFrame failed', None, 0, -2147467259), None)"
+        },
+        "TolerancePerUnitBasisRestrictiveValue": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method TolerancePerUnitBasisRestrictiveValue failed', None, 0, -2147467259), None)"
+        },
+        "ShiftedProfileTolerance": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ShiftedProfileTolerance failed', None, 0, -2147467259), None)"
+        },
+        "CompositeTolerance": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method CompositeTolerance failed', None, 0, -2147467259), None)"
+        },
+        "ProjectedToleranceZone": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ProjectedToleranceZone failed', None, 0, -2147467259), None)"
+        },
+        "GetSurfacesCount": {
+          "status": "read_successfully",
+          "value": 1.0,
+          "error": null
+        }
+      }
+    },
+    {
+      "annotation_name": "Geometrical Tolerance.1",
+      "annotation_type": "FTA_NonSemanticGDT",
+      "annotation_set": "Annotation Set.1",
+      "properties": {
+        "Name": {
+          "status": "read_successfully",
+          "value": "Geometrical Tolerance.1",
+          "error": null
+        },
+        "Type": {
+          "status": "read_successfully",
+          "value": "FTA_NonSemanticGDT",
+          "error": null
+        },
+        "SuperType": {
+          "status": "read_successfully",
+          "value": "FTA_NonSemantic",
+          "error": null
+        },
+        "TPSStatus": {
+          "status": "read_successfully",
+          "value": "OK",
+          "error": null
+        },
+        "Text": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method Text failed', None, 0, -2147467259), None)"
+        },
+        "Noa": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method Noa failed', None, 0, -2147467259), None)"
+        },
+        "ReferenceFrame": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ReferenceFrame failed', None, 0, -2147467259), None)"
+        },
+        "DatumTarget": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method DatumTarget failed', None, 0, -2147467259), None)"
+        },
+        "ToleranceZone": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ToleranceZone failed', None, 0, -2147467259), None)"
+        },
+        "Dimension3D": {
+          "status": "read_successfully_empty",
+          "value": null,
+          "error": null
+        },
+        "IsAToleranceZone": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "IsAnAssociatedRefFrame": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "IsAToleranceUnitBasisValue": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "ToleranceUnitBasisValue": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ToleranceUnitBasisValue failed', None, 0, -2147467259), None)"
+        },
+        "IsADefaultAnnotation": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "DefaultAnnotation": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method DefaultAnnotation failed', None, 0, -2147467259), None)"
+        },
+        "AssociatedRefFrame": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method AssociatedRefFrame failed', None, 0, -2147467259), None)"
+        },
+        "TolerancePerUnitBasisRestrictiveValue": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method TolerancePerUnitBasisRestrictiveValue failed', None, 0, -2147467259), None)"
+        },
+        "ShiftedProfileTolerance": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ShiftedProfileTolerance failed', None, 0, -2147467259), None)"
+        },
+        "CompositeTolerance": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method CompositeTolerance failed', None, 0, -2147467259), None)"
+        },
+        "ProjectedToleranceZone": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ProjectedToleranceZone failed', None, 0, -2147467259), None)"
+        },
+        "GetSurfacesCount": {
+          "status": "read_successfully",
+          "value": 1.0,
+          "error": null
+        }
+      }
+    },
+    {
+      "annotation_name": "Simple Datum.2",
+      "annotation_type": "FTA_DatumSimple",
+      "annotation_set": "Annotation Set.1",
+      "properties": {
+        "Name": {
+          "status": "read_successfully",
+          "value": "Simple Datum.2",
+          "error": null
+        },
+        "Type": {
+          "status": "read_successfully",
+          "value": "FTA_DatumSimple",
+          "error": null
+        },
+        "SuperType": {
+          "status": "read_successfully",
+          "value": "FTA_Datum",
+          "error": null
+        },
+        "TPSStatus": {
+          "status": "read_successfully",
+          "value": "OK",
+          "error": null
+        },
+        "Text": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method Text failed', None, 0, -2147467259), None)"
+        },
+        "Noa": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method Noa failed', None, 0, -2147467259), None)"
+        },
+        "ReferenceFrame": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ReferenceFrame failed', None, 0, -2147467259), None)"
+        },
+        "DatumTarget": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method DatumTarget failed', None, 0, -2147467259), None)"
+        },
+        "ToleranceZone": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ToleranceZone failed', None, 0, -2147467259), None)"
+        },
+        "Dimension3D": {
+          "status": "read_successfully_empty",
+          "value": null,
+          "error": null
+        },
+        "IsAToleranceZone": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "IsAnAssociatedRefFrame": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "IsAToleranceUnitBasisValue": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "ToleranceUnitBasisValue": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ToleranceUnitBasisValue failed', None, 0, -2147467259), None)"
+        },
+        "IsADefaultAnnotation": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "DefaultAnnotation": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method DefaultAnnotation failed', None, 0, -2147467259), None)"
+        },
+        "AssociatedRefFrame": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method AssociatedRefFrame failed', None, 0, -2147467259), None)"
+        },
+        "TolerancePerUnitBasisRestrictiveValue": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method TolerancePerUnitBasisRestrictiveValue failed', None, 0, -2147467259), None)"
+        },
+        "ShiftedProfileTolerance": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ShiftedProfileTolerance failed', None, 0, -2147467259), None)"
+        },
+        "CompositeTolerance": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method CompositeTolerance failed', None, 0, -2147467259), None)"
+        },
+        "ProjectedToleranceZone": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ProjectedToleranceZone failed', None, 0, -2147467259), None)"
+        },
+        "GetSurfacesCount": {
+          "status": "read_successfully",
+          "value": 1.0,
+          "error": null
+        }
+      }
+    },
+    {
+      "annotation_name": "Linear Size.2",
+      "annotation_type": "FTA_LinearDimension",
+      "annotation_set": "Annotation Set.1",
+      "properties": {
+        "Name": {
+          "status": "read_successfully",
+          "value": "Linear Size.2",
+          "error": null
+        },
+        "Type": {
+          "status": "read_successfully",
+          "value": "FTA_LinearDimension",
+          "error": null
+        },
+        "SuperType": {
+          "status": "read_successfully",
+          "value": "FTA_Dimension",
+          "error": null
+        },
+        "TPSStatus": {
+          "status": "read_successfully",
+          "value": "OK",
+          "error": null
+        },
+        "Text": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method Text failed', None, 0, -2147467259), None)"
+        },
+        "Noa": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method Noa failed', None, 0, -2147467259), None)"
+        },
+        "ReferenceFrame": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ReferenceFrame failed', None, 0, -2147467259), None)"
+        },
+        "DatumTarget": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method DatumTarget failed', None, 0, -2147467259), None)"
+        },
+        "ToleranceZone": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ToleranceZone failed', None, 0, -2147467259), None)"
+        },
+        "Dimension3D": {
+          "status": "com_object_returned",
+          "value": {
+            "python_type": "CDispatch",
+            "repr": "<COMObject Dimension3D>"
+          },
+          "error": null
+        },
+        "IsAToleranceZone": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "IsAnAssociatedRefFrame": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "IsAToleranceUnitBasisValue": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "ToleranceUnitBasisValue": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ToleranceUnitBasisValue failed', None, 0, -2147467259), None)"
+        },
+        "IsADefaultAnnotation": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "DefaultAnnotation": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method DefaultAnnotation failed', None, 0, -2147467259), None)"
+        },
+        "AssociatedRefFrame": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method AssociatedRefFrame failed', None, 0, -2147467259), None)"
+        },
+        "TolerancePerUnitBasisRestrictiveValue": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method TolerancePerUnitBasisRestrictiveValue failed', None, 0, -2147467259), None)"
+        },
+        "ShiftedProfileTolerance": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ShiftedProfileTolerance failed', None, 0, -2147467259), None)"
+        },
+        "CompositeTolerance": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method CompositeTolerance failed', None, 0, -2147467259), None)"
+        },
+        "ProjectedToleranceZone": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ProjectedToleranceZone failed', None, 0, -2147467259), None)"
+        },
+        "GetSurfacesCount": {
+          "status": "read_successfully",
+          "value": 1.0,
+          "error": null
+        }
+      }
+    },
+    {
+      "annotation_name": "Simple Datum.3",
+      "annotation_type": "FTA_DatumSimple",
+      "annotation_set": "Annotation Set.1",
+      "properties": {
+        "Name": {
+          "status": "read_successfully",
+          "value": "Simple Datum.3",
+          "error": null
+        },
+        "Type": {
+          "status": "read_successfully",
+          "value": "FTA_DatumSimple",
+          "error": null
+        },
+        "SuperType": {
+          "status": "read_successfully",
+          "value": "FTA_Datum",
+          "error": null
+        },
+        "TPSStatus": {
+          "status": "read_successfully",
+          "value": "OK",
+          "error": null
+        },
+        "Text": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method Text failed', None, 0, -2147467259), None)"
+        },
+        "Noa": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method Noa failed', None, 0, -2147467259), None)"
+        },
+        "ReferenceFrame": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ReferenceFrame failed', None, 0, -2147467259), None)"
+        },
+        "DatumTarget": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method DatumTarget failed', None, 0, -2147467259), None)"
+        },
+        "ToleranceZone": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ToleranceZone failed', None, 0, -2147467259), None)"
+        },
+        "Dimension3D": {
+          "status": "read_successfully_empty",
+          "value": null,
+          "error": null
+        },
+        "IsAToleranceZone": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "IsAnAssociatedRefFrame": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "IsAToleranceUnitBasisValue": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "ToleranceUnitBasisValue": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ToleranceUnitBasisValue failed', None, 0, -2147467259), None)"
+        },
+        "IsADefaultAnnotation": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "DefaultAnnotation": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method DefaultAnnotation failed', None, 0, -2147467259), None)"
+        },
+        "AssociatedRefFrame": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method AssociatedRefFrame failed', None, 0, -2147467259), None)"
+        },
+        "TolerancePerUnitBasisRestrictiveValue": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method TolerancePerUnitBasisRestrictiveValue failed', None, 0, -2147467259), None)"
+        },
+        "ShiftedProfileTolerance": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ShiftedProfileTolerance failed', None, 0, -2147467259), None)"
+        },
+        "CompositeTolerance": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method CompositeTolerance failed', None, 0, -2147467259), None)"
+        },
+        "ProjectedToleranceZone": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ProjectedToleranceZone failed', None, 0, -2147467259), None)"
+        },
+        "GetSurfacesCount": {
+          "status": "read_successfully",
+          "value": 1.0,
+          "error": null
+        }
+      }
+    },
+    {
+      "annotation_name": "Simple Datum.4",
+      "annotation_type": "FTA_DatumSimple",
+      "annotation_set": "Annotation Set.1",
+      "properties": {
+        "Name": {
+          "status": "read_successfully",
+          "value": "Simple Datum.4",
+          "error": null
+        },
+        "Type": {
+          "status": "read_successfully",
+          "value": "FTA_DatumSimple",
+          "error": null
+        },
+        "SuperType": {
+          "status": "read_successfully",
+          "value": "FTA_Datum",
+          "error": null
+        },
+        "TPSStatus": {
+          "status": "read_successfully",
+          "value": "OK",
+          "error": null
+        },
+        "Text": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method Text failed', None, 0, -2147467259), None)"
+        },
+        "Noa": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method Noa failed', None, 0, -2147467259), None)"
+        },
+        "ReferenceFrame": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ReferenceFrame failed', None, 0, -2147467259), None)"
+        },
+        "DatumTarget": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method DatumTarget failed', None, 0, -2147467259), None)"
+        },
+        "ToleranceZone": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ToleranceZone failed', None, 0, -2147467259), None)"
+        },
+        "Dimension3D": {
+          "status": "read_successfully_empty",
+          "value": null,
+          "error": null
+        },
+        "IsAToleranceZone": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "IsAnAssociatedRefFrame": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "IsAToleranceUnitBasisValue": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "ToleranceUnitBasisValue": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ToleranceUnitBasisValue failed', None, 0, -2147467259), None)"
+        },
+        "IsADefaultAnnotation": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "DefaultAnnotation": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method DefaultAnnotation failed', None, 0, -2147467259), None)"
+        },
+        "AssociatedRefFrame": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method AssociatedRefFrame failed', None, 0, -2147467259), None)"
+        },
+        "TolerancePerUnitBasisRestrictiveValue": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method TolerancePerUnitBasisRestrictiveValue failed', None, 0, -2147467259), None)"
+        },
+        "ShiftedProfileTolerance": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ShiftedProfileTolerance failed', None, 0, -2147467259), None)"
+        },
+        "CompositeTolerance": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method CompositeTolerance failed', None, 0, -2147467259), None)"
+        },
+        "ProjectedToleranceZone": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ProjectedToleranceZone failed', None, 0, -2147467259), None)"
+        },
+        "GetSurfacesCount": {
+          "status": "read_successfully",
+          "value": 1.0,
+          "error": null
+        }
+      }
+    },
+    {
+      "annotation_name": "Linear Size.3",
+      "annotation_type": "FTA_LinearDimension",
+      "annotation_set": "Annotation Set.1",
+      "properties": {
+        "Name": {
+          "status": "read_successfully",
+          "value": "Linear Size.3",
+          "error": null
+        },
+        "Type": {
+          "status": "read_successfully",
+          "value": "FTA_LinearDimension",
+          "error": null
+        },
+        "SuperType": {
+          "status": "read_successfully",
+          "value": "FTA_Dimension",
+          "error": null
+        },
+        "TPSStatus": {
+          "status": "read_successfully",
+          "value": "OK",
+          "error": null
+        },
+        "Text": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method Text failed', None, 0, -2147467259), None)"
+        },
+        "Noa": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method Noa failed', None, 0, -2147467259), None)"
+        },
+        "ReferenceFrame": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ReferenceFrame failed', None, 0, -2147467259), None)"
+        },
+        "DatumTarget": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method DatumTarget failed', None, 0, -2147467259), None)"
+        },
+        "ToleranceZone": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ToleranceZone failed', None, 0, -2147467259), None)"
+        },
+        "Dimension3D": {
+          "status": "com_object_returned",
+          "value": {
+            "python_type": "CDispatch",
+            "repr": "<COMObject Dimension3D>"
+          },
+          "error": null
+        },
+        "IsAToleranceZone": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "IsAnAssociatedRefFrame": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "IsAToleranceUnitBasisValue": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "ToleranceUnitBasisValue": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ToleranceUnitBasisValue failed', None, 0, -2147467259), None)"
+        },
+        "IsADefaultAnnotation": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "DefaultAnnotation": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method DefaultAnnotation failed', None, 0, -2147467259), None)"
+        },
+        "AssociatedRefFrame": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method AssociatedRefFrame failed', None, 0, -2147467259), None)"
+        },
+        "TolerancePerUnitBasisRestrictiveValue": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method TolerancePerUnitBasisRestrictiveValue failed', None, 0, -2147467259), None)"
+        },
+        "ShiftedProfileTolerance": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ShiftedProfileTolerance failed', None, 0, -2147467259), None)"
+        },
+        "CompositeTolerance": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method CompositeTolerance failed', None, 0, -2147467259), None)"
+        },
+        "ProjectedToleranceZone": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ProjectedToleranceZone failed', None, 0, -2147467259), None)"
+        },
+        "GetSurfacesCount": {
+          "status": "read_successfully",
+          "value": 2.0,
+          "error": null
+        }
+      }
+    },
+    {
+      "annotation_name": "Datum Reference Frame.1",
+      "annotation_type": "FTA_ReferenceFrame",
+      "annotation_set": "Annotation Set.1",
+      "properties": {
+        "Name": {
+          "status": "read_successfully",
+          "value": "Datum Reference Frame.1",
+          "error": null
+        },
+        "Type": {
+          "status": "read_successfully",
+          "value": "FTA_ReferenceFrame",
+          "error": null
+        },
+        "SuperType": {
+          "status": "read_successfully",
+          "value": "FTA_Datum",
+          "error": null
+        },
+        "TPSStatus": {
+          "status": "read_successfully",
+          "value": "OK",
+          "error": null
+        },
+        "Text": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method Text failed', None, 0, -2147467259), None)"
+        },
+        "Noa": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method Noa failed', None, 0, -2147467259), None)"
+        },
+        "ReferenceFrame": {
+          "status": "com_object_returned",
+          "value": {
+            "python_type": "CDispatch",
+            "repr": "<COMObject ReferenceFrame>"
+          },
+          "error": null
+        },
+        "DatumTarget": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method DatumTarget failed', None, 0, -2147467259), None)"
+        },
+        "ToleranceZone": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ToleranceZone failed', None, 0, -2147467259), None)"
+        },
+        "Dimension3D": {
+          "status": "read_successfully_empty",
+          "value": null,
+          "error": null
+        },
+        "IsAToleranceZone": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "IsAnAssociatedRefFrame": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "IsAToleranceUnitBasisValue": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "ToleranceUnitBasisValue": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ToleranceUnitBasisValue failed', None, 0, -2147467259), None)"
+        },
+        "IsADefaultAnnotation": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "DefaultAnnotation": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method DefaultAnnotation failed', None, 0, -2147467259), None)"
+        },
+        "AssociatedRefFrame": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method AssociatedRefFrame failed', None, 0, -2147467259), None)"
+        },
+        "TolerancePerUnitBasisRestrictiveValue": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method TolerancePerUnitBasisRestrictiveValue failed', None, 0, -2147467259), None)"
+        },
+        "ShiftedProfileTolerance": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ShiftedProfileTolerance failed', None, 0, -2147467259), None)"
+        },
+        "CompositeTolerance": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method CompositeTolerance failed', None, 0, -2147467259), None)"
+        },
+        "ProjectedToleranceZone": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ProjectedToleranceZone failed', None, 0, -2147467259), None)"
+        },
+        "GetSurfacesCount": {
+          "status": "read_successfully",
+          "value": 2.0,
+          "error": null
+        }
+      }
+    },
+    {
+      "annotation_name": "Position.1",
+      "annotation_type": "FTA_TruePosition",
+      "annotation_set": "Annotation Set.1",
+      "properties": {
+        "Name": {
+          "status": "read_successfully",
+          "value": "Position.1",
+          "error": null
+        },
+        "Type": {
+          "status": "read_successfully",
+          "value": "FTA_TruePosition",
+          "error": null
+        },
+        "SuperType": {
+          "status": "read_successfully",
+          "value": "FTA_Position",
+          "error": null
+        },
+        "TPSStatus": {
+          "status": "read_successfully",
+          "value": "OK",
+          "error": null
+        },
+        "Text": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method Text failed', None, 0, -2147467259), None)"
+        },
+        "Noa": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method Noa failed', None, 0, -2147467259), None)"
+        },
+        "ReferenceFrame": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ReferenceFrame failed', None, 0, -2147467259), None)"
+        },
+        "DatumTarget": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method DatumTarget failed', None, 0, -2147467259), None)"
+        },
+        "ToleranceZone": {
+          "status": "com_object_returned",
+          "value": {
+            "python_type": "CDispatch",
+            "repr": "<COMObject ToleranceZone>"
+          },
+          "error": null
+        },
+        "Dimension3D": {
+          "status": "read_successfully_empty",
+          "value": null,
+          "error": null
+        },
+        "IsAToleranceZone": {
+          "status": "read_successfully",
+          "value": true,
+          "error": null
+        },
+        "IsAnAssociatedRefFrame": {
+          "status": "read_successfully",
+          "value": true,
+          "error": null
+        },
+        "IsAToleranceUnitBasisValue": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "ToleranceUnitBasisValue": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ToleranceUnitBasisValue failed', None, 0, -2147467259), None)"
+        },
+        "IsADefaultAnnotation": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "DefaultAnnotation": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method DefaultAnnotation failed', None, 0, -2147467259), None)"
+        },
+        "AssociatedRefFrame": {
+          "status": "com_object_returned",
+          "value": {
+            "python_type": "CDispatch",
+            "repr": "<COMObject AssociatedRefFrame>"
+          },
+          "error": null
+        },
+        "TolerancePerUnitBasisRestrictiveValue": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method TolerancePerUnitBasisRestrictiveValue failed', None, 0, -2147467259), None)"
+        },
+        "ShiftedProfileTolerance": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ShiftedProfileTolerance failed', None, 0, -2147467259), None)"
+        },
+        "CompositeTolerance": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method CompositeTolerance failed', None, 0, -2147467259), None)"
+        },
+        "ProjectedToleranceZone": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ProjectedToleranceZone failed', None, 0, -2147467259), None)"
+        },
+        "GetSurfacesCount": {
+          "status": "read_successfully",
+          "value": 2.0,
+          "error": null
+        }
+      }
+    },
+    {
+      "annotation_name": "Geometrical Tolerance.2",
+      "annotation_type": "FTA_NonSemanticGDT",
+      "annotation_set": "Annotation Set.1",
+      "properties": {
+        "Name": {
+          "status": "read_successfully",
+          "value": "Geometrical Tolerance.2",
+          "error": null
+        },
+        "Type": {
+          "status": "read_successfully",
+          "value": "FTA_NonSemanticGDT",
+          "error": null
+        },
+        "SuperType": {
+          "status": "read_successfully",
+          "value": "FTA_NonSemantic",
+          "error": null
+        },
+        "TPSStatus": {
+          "status": "read_successfully",
+          "value": "OK",
+          "error": null
+        },
+        "Text": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method Text failed', None, 0, -2147467259), None)"
+        },
+        "Noa": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method Noa failed', None, 0, -2147467259), None)"
+        },
+        "ReferenceFrame": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ReferenceFrame failed', None, 0, -2147467259), None)"
+        },
+        "DatumTarget": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method DatumTarget failed', None, 0, -2147467259), None)"
+        },
+        "ToleranceZone": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ToleranceZone failed', None, 0, -2147467259), None)"
+        },
+        "Dimension3D": {
+          "status": "read_successfully_empty",
+          "value": null,
+          "error": null
+        },
+        "IsAToleranceZone": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "IsAnAssociatedRefFrame": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "IsAToleranceUnitBasisValue": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "ToleranceUnitBasisValue": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ToleranceUnitBasisValue failed', None, 0, -2147467259), None)"
+        },
+        "IsADefaultAnnotation": {
+          "status": "read_successfully",
+          "value": false,
+          "error": null
+        },
+        "DefaultAnnotation": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method DefaultAnnotation failed', None, 0, -2147467259), None)"
+        },
+        "AssociatedRefFrame": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method AssociatedRefFrame failed', None, 0, -2147467259), None)"
+        },
+        "TolerancePerUnitBasisRestrictiveValue": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method TolerancePerUnitBasisRestrictiveValue failed', None, 0, -2147467259), None)"
+        },
+        "ShiftedProfileTolerance": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ShiftedProfileTolerance failed', None, 0, -2147467259), None)"
+        },
+        "CompositeTolerance": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method CompositeTolerance failed', None, 0, -2147467259), None)"
+        },
+        "ProjectedToleranceZone": {
+          "status": "read_failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAAnnotation', 'The method ProjectedToleranceZone failed', None, 0, -2147467259), None)"
+        },
+        "GetSurfacesCount": {
+          "status": "read_successfully",
+          "value": 1.0,
+          "error": null
+        }
+      }
+    }
+  ],
+  "engineering_approval": false
+}

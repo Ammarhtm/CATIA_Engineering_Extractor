@@ -1,0 +1,529 @@
+{
+  "pipeline_version": "1.1-feature-property-diagnostics",
+  "document": "Part_b.CATPart",
+  "mode": "read_only",
+  "features": [
+    {
+      "body_name": "PartBody",
+      "shape_name": "Shaft.1",
+      "properties": {
+        "Name": {
+          "status": "success",
+          "value": "Shaft.1",
+          "error": null
+        },
+        "Type": {
+          "status": "not_available",
+          "value": null,
+          "error": "AttributeError('Item.Type')"
+        },
+        "BottomType": {
+          "status": "not_available",
+          "value": null,
+          "error": "AttributeError('Item.BottomType')"
+        },
+        "HoleThreadDescription": {
+          "status": "not_available",
+          "value": null,
+          "error": "AttributeError('Item.HoleThreadDescription')"
+        },
+        "Sketch": {
+          "status": "failed",
+          "value": null,
+          "error": "com_error(-2147352573, 'Member not found.', None, None)"
+        },
+        "Parent": {
+          "status": "failed",
+          "value": null,
+          "error": "com_error(-2147352573, 'Member not found.', None, None)"
+        }
+      },
+      "interface": {
+        "python_type": "CDispatch",
+        "guid": "{EBF80473-64F8-11D1-A27F-0000F87546FD}",
+        "methods": [
+          {
+            "name": "QueryInterface",
+            "dispid": 1610612736,
+            "kind": 1
+          },
+          {
+            "name": "AddRef",
+            "dispid": 1610612737,
+            "kind": 1
+          },
+          {
+            "name": "Release",
+            "dispid": 1610612738,
+            "kind": 1
+          },
+          {
+            "name": "GetTypeInfoCount",
+            "dispid": 1610678272,
+            "kind": 1
+          },
+          {
+            "name": "GetTypeInfo",
+            "dispid": 1610678273,
+            "kind": 1
+          },
+          {
+            "name": "GetIDsOfNames",
+            "dispid": 1610678274,
+            "kind": 1
+          },
+          {
+            "name": "Invoke",
+            "dispid": 1610678275,
+            "kind": 1
+          },
+          {
+            "name": "Destructor",
+            "dispid": 1610743808,
+            "kind": 1
+          },
+          {
+            "name": "GetMetaObject",
+            "dispid": 1610743809,
+            "kind": 1
+          },
+          {
+            "name": "IsA",
+            "dispid": 1610743810,
+            "kind": 1
+          },
+          {
+            "name": "IsAKindOf",
+            "dispid": 1610743811,
+            "kind": 1
+          },
+          {
+            "name": "GetImpl",
+            "dispid": 1610743812,
+            "kind": 1
+          },
+          {
+            "name": "SetImpl",
+            "dispid": 1610743813,
+            "kind": 1
+          },
+          {
+            "name": "IsNull",
+            "dispid": 1610743814,
+            "kind": 1
+          },
+          {
+            "name": "IsEqual",
+            "dispid": 1610743815,
+            "kind": 1
+          },
+          {
+            "name": "SurChargeQI",
+            "dispid": 1610743816,
+            "kind": 1
+          },
+          {
+            "name": "ChangeComponentState",
+            "dispid": 1610743817,
+            "kind": 1
+          },
+          {
+            "name": "Application",
+            "dispid": 1610874880,
+            "kind": 2
+          },
+          {
+            "name": "Parent",
+            "dispid": 1610874881,
+            "kind": 2
+          },
+          {
+            "name": "Name",
+            "dispid": 1610874882,
+            "kind": 2
+          },
+          {
+            "name": "Name",
+            "dispid": 1610874882,
+            "kind": 4
+          },
+          {
+            "name": "GetItem",
+            "dispid": 1610874884,
+            "kind": 1
+          },
+          {
+            "name": "Sketch",
+            "dispid": 1611005952,
+            "kind": 2
+          },
+          {
+            "name": "SetProfileElement",
+            "dispid": 1611005953,
+            "kind": 1
+          },
+          {
+            "name": "FirstAngle",
+            "dispid": 1611071488,
+            "kind": 2
+          },
+          {
+            "name": "SecondAngle",
+            "dispid": 1611071489,
+            "kind": 2
+          },
+          {
+            "name": "RevoluteAxis",
+            "dispid": 1611071490,
+            "kind": 2
+          },
+          {
+            "name": "RevoluteAxis",
+            "dispid": 1611071490,
+            "kind": 4
+          },
+          {
+            "name": "IsThin",
+            "dispid": 1611071492,
+            "kind": 2
+          },
+          {
+            "name": "IsThin",
+            "dispid": 1611071492,
+            "kind": 4
+          },
+          {
+            "name": "NeutralFiber",
+            "dispid": 1611071494,
+            "kind": 2
+          },
+          {
+            "name": "NeutralFiber",
+            "dispid": 1611071494,
+            "kind": 4
+          },
+          {
+            "name": "MergeEnd",
+            "dispid": 1611071496,
+            "kind": 2
+          },
+          {
+            "name": "MergeEnd",
+            "dispid": 1611071496,
+            "kind": 4
+          }
+        ],
+        "error": null
+      }
+    },
+    {
+      "body_name": "PartBody",
+      "shape_name": "Hole.1",
+      "properties": {
+        "Name": {
+          "status": "success",
+          "value": "Hole.1",
+          "error": null
+        },
+        "Type": {
+          "status": "success",
+          "value": 0,
+          "error": null
+        },
+        "BottomType": {
+          "status": "success",
+          "value": 1,
+          "error": null
+        },
+        "HoleThreadDescription": {
+          "status": "failed",
+          "value": null,
+          "error": "com_error(-2147352567, 'Exception occurred.', (0, 'CATIAHole', 'The method HoleThreadDescription failed', None, 0, -2147467259), None)"
+        },
+        "Sketch": {
+          "status": "failed",
+          "value": null,
+          "error": "com_error(-2147352573, 'Member not found.', None, None)"
+        },
+        "Parent": {
+          "status": "failed",
+          "value": null,
+          "error": "com_error(-2147352573, 'Member not found.', None, None)"
+        }
+      },
+      "interface": {
+        "python_type": "CDispatch",
+        "guid": "{A6AE2C93-64F9-11D1-A27F-0000F87546FD}",
+        "methods": [
+          {
+            "name": "QueryInterface",
+            "dispid": 1610612736,
+            "kind": 1
+          },
+          {
+            "name": "AddRef",
+            "dispid": 1610612737,
+            "kind": 1
+          },
+          {
+            "name": "Release",
+            "dispid": 1610612738,
+            "kind": 1
+          },
+          {
+            "name": "GetTypeInfoCount",
+            "dispid": 1610678272,
+            "kind": 1
+          },
+          {
+            "name": "GetTypeInfo",
+            "dispid": 1610678273,
+            "kind": 1
+          },
+          {
+            "name": "GetIDsOfNames",
+            "dispid": 1610678274,
+            "kind": 1
+          },
+          {
+            "name": "Invoke",
+            "dispid": 1610678275,
+            "kind": 1
+          },
+          {
+            "name": "Destructor",
+            "dispid": 1610743808,
+            "kind": 1
+          },
+          {
+            "name": "GetMetaObject",
+            "dispid": 1610743809,
+            "kind": 1
+          },
+          {
+            "name": "IsA",
+            "dispid": 1610743810,
+            "kind": 1
+          },
+          {
+            "name": "IsAKindOf",
+            "dispid": 1610743811,
+            "kind": 1
+          },
+          {
+            "name": "GetImpl",
+            "dispid": 1610743812,
+            "kind": 1
+          },
+          {
+            "name": "SetImpl",
+            "dispid": 1610743813,
+            "kind": 1
+          },
+          {
+            "name": "IsNull",
+            "dispid": 1610743814,
+            "kind": 1
+          },
+          {
+            "name": "IsEqual",
+            "dispid": 1610743815,
+            "kind": 1
+          },
+          {
+            "name": "SurChargeQI",
+            "dispid": 1610743816,
+            "kind": 1
+          },
+          {
+            "name": "ChangeComponentState",
+            "dispid": 1610743817,
+            "kind": 1
+          },
+          {
+            "name": "Application",
+            "dispid": 1610874880,
+            "kind": 2
+          },
+          {
+            "name": "Parent",
+            "dispid": 1610874881,
+            "kind": 2
+          },
+          {
+            "name": "Name",
+            "dispid": 1610874882,
+            "kind": 2
+          },
+          {
+            "name": "Name",
+            "dispid": 1610874882,
+            "kind": 4
+          },
+          {
+            "name": "GetItem",
+            "dispid": 1610874884,
+            "kind": 1
+          },
+          {
+            "name": "Sketch",
+            "dispid": 1611005952,
+            "kind": 2
+          },
+          {
+            "name": "SetProfileElement",
+            "dispid": 1611005953,
+            "kind": 1
+          },
+          {
+            "name": "Type",
+            "dispid": 1611071488,
+            "kind": 2
+          },
+          {
+            "name": "Type",
+            "dispid": 1611071488,
+            "kind": 4
+          },
+          {
+            "name": "Diameter",
+            "dispid": 1611071490,
+            "kind": 2
+          },
+          {
+            "name": "HeadDiameter",
+            "dispid": 1611071491,
+            "kind": 2
+          },
+          {
+            "name": "HeadDepth",
+            "dispid": 1611071492,
+            "kind": 2
+          },
+          {
+            "name": "HeadAngle",
+            "dispid": 1611071493,
+            "kind": 2
+          },
+          {
+            "name": "AnchorMode",
+            "dispid": 1611071494,
+            "kind": 2
+          },
+          {
+            "name": "AnchorMode",
+            "dispid": 1611071494,
+            "kind": 4
+          },
+          {
+            "name": "BottomType",
+            "dispid": 1611071496,
+            "kind": 2
+          },
+          {
+            "name": "BottomType",
+            "dispid": 1611071496,
+            "kind": 4
+          },
+          {
+            "name": "BottomAngle",
+            "dispid": 1611071498,
+            "kind": 2
+          },
+          {
+            "name": "BottomLimit",
+            "dispid": 1611071499,
+            "kind": 2
+          },
+          {
+            "name": "ThreadingMode",
+            "dispid": 1611071500,
+            "kind": 2
+          },
+          {
+            "name": "ThreadingMode",
+            "dispid": 1611071500,
+            "kind": 4
+          },
+          {
+            "name": "ThreadSide",
+            "dispid": 1611071502,
+            "kind": 2
+          },
+          {
+            "name": "ThreadSide",
+            "dispid": 1611071502,
+            "kind": 4
+          },
+          {
+            "name": "ThreadDepth",
+            "dispid": 1611071504,
+            "kind": 2
+          },
+          {
+            "name": "ThreadDiameter",
+            "dispid": 1611071505,
+            "kind": 2
+          },
+          {
+            "name": "ThreadPitch",
+            "dispid": 1611071506,
+            "kind": 2
+          },
+          {
+            "name": "Reverse",
+            "dispid": 1611071507,
+            "kind": 1
+          },
+          {
+            "name": "GetOrigin",
+            "dispid": 1611071508,
+            "kind": 1
+          },
+          {
+            "name": "SetOrigin",
+            "dispid": 1611071509,
+            "kind": 1
+          },
+          {
+            "name": "GetDirection",
+            "dispid": 1611071510,
+            "kind": 1
+          },
+          {
+            "name": "SetDirection",
+            "dispid": 1611071511,
+            "kind": 1
+          },
+          {
+            "name": "CounterSunkMode",
+            "dispid": 1611071512,
+            "kind": 2
+          },
+          {
+            "name": "CounterSunkMode",
+            "dispid": 1611071512,
+            "kind": 4
+          },
+          {
+            "name": "HoleThreadDescription",
+            "dispid": 1611071514,
+            "kind": 2
+          },
+          {
+            "name": "CreateStandardThreadDesignTable",
+            "dispid": 1611071515,
+            "kind": 1
+          },
+          {
+            "name": "CreateUserStandardDesignTable",
+            "dispid": 1611071516,
+            "kind": 1
+          }
+        ],
+        "error": null
+      }
+    }
+  ],
+  "engineering_approval": false
+}

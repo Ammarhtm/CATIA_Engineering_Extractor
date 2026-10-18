@@ -1,0 +1,49 @@
+{
+  "pipeline_version": "1.8-feature-tree-diagnostic",
+  "document": "Part_b.CATPart",
+  "mode": "read_only",
+  "body_count": 1,
+  "bodies": [
+    {
+      "body_name": {
+        "status": "success",
+        "value": "PartBody",
+        "error": null
+      },
+      "body_type": "CDispatch",
+      "shapes": [
+        {
+          "index": 1,
+          "name": {
+            "status": "success",
+            "value": "Shaft.1",
+            "error": null
+          },
+          "type": {
+            "status": "failed",
+            "value": null,
+            "error": "AttributeError('Item.ShapeType')"
+          },
+          "python_type": "CDispatch"
+        },
+        {
+          "index": 2,
+          "name": {
+            "status": "success",
+            "value": "Hole.1",
+            "error": null
+          },
+          "type": {
+            "status": "failed",
+            "value": null,
+            "error": "AttributeError('Item.ShapeType')"
+          },
+          "python_type": "CDispatch"
+        }
+      ],
+      "hybrid_bodies": [],
+      "hybrid_bodies_error": "AttributeError(\"'NoneType' object has no attribute 'Count'\")"
+    }
+  ],
+  "engineering_approval": false
+}

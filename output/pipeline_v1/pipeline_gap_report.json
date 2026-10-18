@@ -1,5 +1,5 @@
 {
-  "pipeline_version": "1.7-com-gap-report",
+  "pipeline_version": "1.8-com-gap-report",
   "document": "Part_b.CATPart",
   "mode": "read_only",
   "source_files": {
@@ -14,7 +14,7 @@
     "source_files_expected": 5,
     "source_files_loaded": 5,
     "nonsemantic_gdt_annotations_reviewed": 2,
-    "annotations_requiring_visual_extraction": 2
+    "annotations_requiring_visual_review": 2
   },
   "gaps": [
     {
@@ -29,16 +29,21 @@
         "GetSurfacesCount",
         "GetSurfaces"
       ],
+      "diagnostic_sources_loaded": [
+        "gdt_objects",
+        "gdt_text_access",
+        "gdt_remaining_properties"
+      ],
       "unresolved_items": [
         {
           "item": "geometric_symbol",
-          "status": "not_extracted",
-          "next_action": "OpenCV + OCR candidate extraction"
+          "status": "not_extracted_by_current_com_tests",
+          "next_action": "Review visual extraction candidate"
         },
         {
           "item": "displayed_tolerance_frame_content",
           "status": "not_extracted_by_current_com_tests",
-          "next_action": "OpenCV + OCR candidate extraction"
+          "next_action": "Review visual extraction candidate"
         }
       ],
       "engineering_approval": false
@@ -55,21 +60,26 @@
         "GetSurfacesCount",
         "GetSurfaces"
       ],
+      "diagnostic_sources_loaded": [
+        "gdt_objects",
+        "gdt_text_access",
+        "gdt_remaining_properties"
+      ],
       "unresolved_items": [
         {
           "item": "geometric_symbol",
-          "status": "not_extracted",
-          "next_action": "OpenCV + OCR candidate extraction"
+          "status": "not_extracted_by_current_com_tests",
+          "next_action": "Review visual extraction candidate"
         },
         {
           "item": "displayed_tolerance_frame_content",
           "status": "not_extracted_by_current_com_tests",
-          "next_action": "OpenCV + OCR candidate extraction"
+          "next_action": "Review visual extraction candidate"
         }
       ],
       "engineering_approval": false
     }
   ],
-  "next_pipeline": "OpenCV + OCR",
+  "next_pipeline": "OpenCV + OCR candidate review",
   "engineering_approval": false
 }
