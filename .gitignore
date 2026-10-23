@@ -34,3 +34,28 @@ output/tmp/
 build/
 dist/
 *.egg-info/
+# Generated engineering results
+/output/
+/datasets/
+/results/
+
+# CATIA project data
+*.CATPart
+*.CATProduct
+*.CATDrawing
+*.CATProcess
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+
+# Local configuration
+.env
+.env.*
+!.env.example
+.vscode/
+.idea/

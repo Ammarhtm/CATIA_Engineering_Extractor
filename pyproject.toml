@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "catia-engineering-extractor"
+version = "0.1.0"
+description = "CATIA V5 engineering data extraction with COM, visual GD&T OCR and human validation"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "CATIA Engineering Extractor contributors"}]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: Microsoft :: Windows",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "numpy>=1.24",
+    "opencv-python>=4.8",
+    "Pillow>=10.0",
+    "pytesseract>=0.3.10",
+    "pyautogui>=0.9.54",
+    "openpyxl>=3.1",
+    "pywin32>=306; sys_platform == 'win32'",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+catia-extract = "catia_extractor.pipeline_unified.runner:run_pipeline"
+catia-validate = "catia_extractor.pipeline_unified.engineering_validator:run"
+catia-review = "catia_extractor.pipeline_unified.human_review:run"
+catia-finalize = "catia_extractor.pipeline_unified.final_report:run"
+catia-export = "catia_extractor.pipeline_unified.export_engineering:run"
+catia-studio = "catia_extractor.frontend.desktop_app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"catia_extractor.ocr" = ["templates/*.png"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests/unit", "tests/offline"]
+pythonpath = ["src"]
+addopts = "-ra"
+markers = ["catia: tests requiring a running CATIA V5 Windows COM session"]
