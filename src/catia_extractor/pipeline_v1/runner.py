@@ -15,6 +15,9 @@ from catia_extractor.catia.nonsemantic_gdt_extractor import (
 from catia_extractor.catia.reference_frame_extractor import (
     extract_reference_frames,
 )
+from catia_extractor.pipelines.gap_analyzer import (
+    analyze_missing_fields,
+)
 from catia_extractor.pipelines.visual_fallback import (
     run_visual_fallback,
 )
@@ -23,19 +26,12 @@ from catia_extractor.pipelines.visual_fallback import (
 ROOT = Path(__file__).resolve().parents[3]
 
 OUTPUT_DIR = ROOT / "output" / "pipeline_v1"
-
-OCR_REPORT_DIR = (
-    ROOT / "output" / "debug" / "nonsemantic_v71"
-)
+OCR_REPORT_DIR = ROOT / "output" / "debug" / "nonsemantic_v71"
 
 EXTRACTION_PATH = OUTPUT_DIR / "catia_full_extraction.json"
 GAP_REPORT_PATH = OUTPUT_DIR / "com_gap_report.json"
 VISUAL_FALLBACK_PATH = OUTPUT_DIR / "visual_fallback_report.json"
 
-
-# These fields are not supplied by the current nonsemantic COM extractor.
-# If a future COM extractor supplies them, the gap analysis will preserve
-# the extracted values instead of scheduling them for visual extraction.
 NONSEMANTIC_VISUAL_FIELDS = (
     "geometric_symbol",
     "displayed_tolerance_frame_content",
@@ -56,19 +52,14 @@ def json_safe(value: Any) -> Any:
     if isinstance(value, (list, tuple)):
         return [json_safe(item) for item in value]
 
-    if value is None or isinstance(
-        value, (str, int, float, bool)
-    ):
+    if value is None or isinstance(value, (str, int, float, bool)):
         return value
 
     return repr(value)
 
 
 def is_present(value: Any) -> bool:
-    """Check whether a field has a usable extracted value.
-
-    Numeric zero and boolean False are valid values.
-    """
+    """Treat zero and False as valid values."""
     if value is None:
         return False
 
@@ -91,7 +82,6 @@ def read_property(obj: Any, name: str) -> dict[str, Any]:
             "value": json_safe(value),
             "error": None,
         }
-
     except Exception as exc:
         return {
             "status": "failed",
@@ -101,7 +91,7 @@ def read_property(obj: Any, name: str) -> dict[str, Any]:
 
 
 def inventory_annotations(part: Any) -> dict[str, Any]:
-    """Inventory annotation sets without modifying the CATIA document."""
+    """Inventory CATIA annotation sets and annotations."""
     annotation_sets = []
 
     for set_index in range(1, part.AnnotationSets.Count + 1):
@@ -143,7 +133,7 @@ def inventory_annotations(part: Any) -> dict[str, Any]:
 
 
 def inventory_feature_tree(part: Any) -> dict[str, Any]:
-    """Inventory bodies and shapes."""
+    """Inventory CATIA bodies and their shapes."""
     bodies = []
 
     for body_index in range(1, part.Bodies.Count + 1):
@@ -176,21 +166,23 @@ def run_extractor(
     function: Callable[..., Any],
     *args: Any,
 ) -> dict[str, Any]:
-    """Run one extractor and preserve its success or failure."""
+    """Run an extractor and preserve failures independently."""
     try:
         data = json_safe(function(*args))
 
-        result = {
+        if isinstance(data, list):
+            count = len(data)
+        elif isinstance(data, dict):
+            count = len(data.get("parameters", []))
+        else:
+            count = None
+
+        return {
             "status": "success",
+            "count": count,
             "data": data,
             "error": None,
         }
-
-        if isinstance(data, (list, dict)):
-            result["count"] = len(data)
-
-        return result
-
     except Exception as exc:
         return {
             "status": "failed",
@@ -200,10 +192,23 @@ def run_extractor(
         }
 
 
+def write_json(path: Path, data: dict[str, Any]) -> None:
+    """Write JSON and verify that the file can be reopened."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    path.write_text(
+        json.dumps(json_safe(data), indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
+    with path.open("r", encoding="utf-8") as file:
+        json.load(file)
+
+
 def build_gap_report(
     extraction: dict[str, Any],
 ) -> dict[str, Any]:
-    """Identify missing visual fields from actual COM extraction records."""
+    """Identify missing fields using the dedicated Gap Analyzer."""
     extractor_results = extraction["extractor_results"]
     nonsemantic = extractor_results.get("nonsemantic_gdt", {})
 
@@ -212,10 +217,13 @@ def build_gap_report(
         if nonsemantic.get("status") == "success"
         else []
     )
+    annotations = annotations or []
 
-    gaps = []
+    required_fields: dict[str, list[str]] = {}
+    extracted_data: dict[str, dict[str, Any]] = {}
+    metadata: dict[str, dict[str, Any]] = {}
 
-    for index, annotation in enumerate(annotations or [], start=1):
+    for index, annotation in enumerate(annotations, start=1):
         if not isinstance(annotation, dict):
             continue
 
@@ -223,30 +231,21 @@ def build_gap_report(
             annotation.get("annotation_name")
             or f"Unknown annotation {index}"
         )
+        annotation_id = f"nonsemantic_gdt:{name}"
 
-        annotation_type = annotation.get(
-            "annotation_type",
-            "FTA_NonSemanticGDT",
+        required_fields[annotation_id] = list(
+            NONSEMANTIC_VISUAL_FIELDS
         )
+        extracted_data[annotation_id] = annotation
 
-        # Build a list dynamically: only fields with no usable COM
-        # value are sent to the visual fallback stage.
-        missing_fields = [
-            field
-            for field in NONSEMANTIC_VISUAL_FIELDS
-            if not is_present(annotation.get(field))
-        ]
-
-        if not missing_fields:
-            continue
-
-        gaps.append({
+        metadata[annotation_id] = {
             "annotation_name": name,
-            "annotation_id": (
-                f"nonsemantic_gdt:{name}"
-            ),
+            "annotation_id": annotation_id,
             "extractor_family": "nonsemantic_gdt",
-            "annotation_type": annotation_type,
+            "annotation_type": annotation.get(
+                "annotation_type",
+                "FTA_NonSemanticGDT",
+            ),
             "known_metadata": {
                 "super_type": annotation.get("super_type"),
                 "tps_status": annotation.get("tps_status"),
@@ -255,11 +254,25 @@ def build_gap_report(
                     "extraction_status"
                 ),
             },
-            "missing_fields": missing_fields,
-            "status": "pending_visual_extraction",
+        }
+
+    tasks = analyze_missing_fields(
+        required_fields,
+        extracted_data,
+    )
+
+    gaps = []
+
+    for task in tasks:
+        annotation_id = task["annotation_id"]
+
+        gaps.append({
+            **metadata[annotation_id],
+            "missing_fields": task["missing_fields"],
+            "status": task["status"],
             "next_action": (
-                "Search for matching OCR evidence or route only "
-                "the remaining missing fields to visual extraction"
+                "Search matching OCR evidence or route the remaining "
+                "missing fields to visual extraction."
             ),
             "engineering_approval": False,
         })
@@ -274,11 +287,11 @@ def build_gap_report(
     ]
 
     return {
-        "pipeline_version": "2.1-gap-analysis",
+        "pipeline_version": "2.2-gap-analysis",
         "document": extraction["document"]["name"],
         "mode": "read_only",
         "counts": {
-            "records_analyzed": len(annotations or []),
+            "records_analyzed": len(required_fields),
             "records_requiring_review": len(gaps),
             "failed_extractors": len(failed_extractors),
         },
@@ -289,24 +302,10 @@ def build_gap_report(
     }
 
 
-def write_json(path: Path, data: dict[str, Any]) -> None:
-    """Save and validate a JSON report."""
-    path.parent.mkdir(parents=True, exist_ok=True)
-
-    path.write_text(
-        json.dumps(data, indent=2, ensure_ascii=False),
-        encoding="utf-8",
-    )
-
-    # Confirm that the saved file can be reopened.
-    json.loads(path.read_text(encoding="utf-8"))
-
-
 def run_pipeline() -> dict[str, Any]:
-    """Run COM extraction, gap analysis, then visual fallback."""
+    """Run CATIA extraction, gap analysis, and visual fallback."""
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Stage 1: Connect to the currently available CATIA session.
     session = connect_to_catia()
     document = session.document
     part = document.Part
@@ -314,23 +313,16 @@ def run_pipeline() -> dict[str, Any]:
     print("\n====== PIPELINE 1: COM EXTRACTION ======")
     print("Document:", document.Name)
 
-    # Stage 2: Collect inventory and run the existing COM extractors.
-    tree_inventory = inventory_annotations(part)
-    feature_tree = inventory_feature_tree(part)
+    tree_inventory = json_safe(inventory_annotations(part))
+    feature_tree = json_safe(inventory_feature_tree(part))
 
     extractor_results = {
         "part_parameters_and_features": run_extractor(
             read_catia_part, session
         ),
-        "semantic_gdt": run_extractor(
-            extract_gdt, part
-        ),
-        "datums": run_extractor(
-            extract_datums, part
-        ),
-        "dimensions": run_extractor(
-            extract_dimensions, part
-        ),
+        "semantic_gdt": run_extractor(extract_gdt, part),
+        "datums": run_extractor(extract_datums, part),
+        "dimensions": run_extractor(extract_dimensions, part),
         "nonsemantic_gdt": run_extractor(
             extract_nonsemantic_gdt, part
         ),
@@ -340,7 +332,7 @@ def run_pipeline() -> dict[str, Any]:
     }
 
     extraction = {
-        "pipeline_version": "2.1-com-extraction",
+        "pipeline_version": "2.2-com-extraction",
         "document": {
             "name": str(document.Name),
             "part_name": str(part.Name),
@@ -354,62 +346,43 @@ def run_pipeline() -> dict[str, Any]:
 
     write_json(EXTRACTION_PATH, extraction)
 
-    # Stage 3: Compare the COM results with the visual fields required.
     gap_report = build_gap_report(extraction)
     write_json(GAP_REPORT_PATH, gap_report)
 
     print("\n====== GAP ANALYSIS ======")
-    print(
-        "Annotations inventoried:",
-        tree_inventory["annotation_count"],
-    )
-    print(
-        "Nonsemantic records analyzed:",
-        gap_report["counts"]["records_analyzed"],
-    )
+    print("Annotations inventoried:", tree_inventory["annotation_count"])
+    print("Records analyzed:", gap_report["counts"]["records_analyzed"])
     print(
         "Records requiring review:",
         gap_report["counts"]["records_requiring_review"],
     )
-    print(
-        "Failed extractors:",
-        gap_report["counts"]["failed_extractors"],
-    )
+    print("Failed extractors:", gap_report["counts"]["failed_extractors"])
 
     for name, result in extractor_results.items():
         print(
             name,
             "| status:", result["status"],
-            "| count:", result.get("count"),
+            "| count:", result["count"],
         )
-
         if result["status"] == "failed":
             print("  Error:", result["error"])
 
-    # Stage 4: Enrich the gaps with existing OCR candidates.
-    # No OCR report is treated as engineering approval.
-    visual_report = run_visual_fallback(
+    visual_fallback = run_visual_fallback(
         gap_report_path=GAP_REPORT_PATH,
         ocr_directory=OCR_REPORT_DIR,
         output_path=VISUAL_FALLBACK_PATH,
     )
 
     print("\n====== PIPELINE 2: VISUAL FALLBACK ======")
-    print(
-        "Annotations reviewed:",
-        visual_report["annotations_reviewed"],
-    )
-    print(
-        "OCR reports discovered:",
-        visual_report["ocr_reports_discovered"],
-    )
+    print("Annotations reviewed:", visual_fallback["annotations_reviewed"])
+    print("OCR reports discovered:", visual_fallback["ocr_reports_discovered"])
 
-    for item in visual_report["results"]:
+    for result in visual_fallback["results"]:
         print(
-            item["annotation_name"],
-            "| status:", item["status"],
-            "| missing fields:", item["missing_fields"],
-            "| OCR available:", item["ocr_report_available"],
+            result["annotation_name"],
+            "| status:", result["status"],
+            "| missing fields:", result["missing_fields"],
+            "| OCR available:", result["ocr_report_available"],
         )
 
     print("\n====== OUTPUT FILES ======")
@@ -417,12 +390,7 @@ def run_pipeline() -> dict[str, Any]:
     print("Gap report:", GAP_REPORT_PATH.resolve())
     print("Visual fallback:", VISUAL_FALLBACK_PATH.resolve())
 
-    return {
-        "extraction": extraction,
-        "gap_report": gap_report,
-        "visual_fallback_report": visual_report,
-        "engineering_approval": False,
-    }
+    return extraction
 
 
 if __name__ == "__main__":

@@ -1,0 +1,785 @@
+
+"""V6.5 — Per-template thresholds for GD&T modifiers, preserving V6.4 shape and position checks.
+
+Run:
+    python -m pytest tests/integration/test_nonsemantic_ocr_v65.py -v -s
+
+Reads V5 clean captures and V5.4 frame reports.
+Does not modify CATIA.
+OCR results remain provisional until visually validated.
+"""
+
+from itertools import combinations
+from pathlib import Path
+import json
+import re
+
+import cv2
+import easyocr
+import numpy as np
+import pytest
+
+
+ROOT = Path(__file__).resolve().parents[2]
+V5 = ROOT / "output" / "debug" / "nonsemantic_v5"
+V54 = ROOT / "output" / "debug" / "nonsemantic_v54"
+V63 = ROOT / "output" / "debug" / "nonsemantic_v63"
+OUT = ROOT / "output" / "debug" / "nonsemantic_v65"
+TEMPLATE_DIR = V63 / "templates"
+TEMPLATE_FILES = ("perpendicularity.png", "diameter.png", "mmc.png", "flatness.png")
+
+TARGETS = (
+    "Geometrical Tolerance.1",
+    "Geometrical Tolerance.2",
+)
+
+SCALE = 5
+MIN_DIVIDER_SCORE = 0.48
+MIN_SYMBOL_SCORE = 0.62
+MIN_MODIFIER_SCORE = 0.68
+MIN_MMC_SCORE = 0.59
+MIN_MATCH_MARGIN = 0.035
+
+
+def safe_name(name):
+    return name.replace(" ", "_").replace(".", "_")
+
+
+@pytest.fixture(scope="module")
+def reader():
+    return easyocr.Reader(["en"], gpu=False)
+
+
+def load_frame(name):
+    safe = safe_name(name)
+    image_path = V5 / f"{safe}_before.png"
+    report_path = V54 / f"{safe}_report.json"
+
+    assert image_path.is_file(), f"Missing image: {image_path}"
+    assert report_path.is_file(), f"Missing V5.4 report: {report_path}"
+
+    image = cv2.imread(str(image_path))
+    assert image is not None, f"Cannot read image: {image_path}"
+
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    box = report.get("frame")
+
+    assert box is not None, (
+        f"No verified frame candidate for {name}; "
+        "review the V5.4 frame report first."
+    )
+
+    x, y, w, h = map(int, box)
+    ih, iw = image.shape[:2]
+
+    assert w > 0 and h > 0
+    assert x >= 0 and y >= 0
+    assert x + w <= iw and y + h <= ih
+
+    return image[y:y + h, x:x + w].copy(), box
+
+
+def neutral_mask(image):
+    """Keep neutral white/gray CAD strokes, excluding colored geometry."""
+    b, g, r = (
+        image[:, :, i].astype(np.int16)
+        for i in range(3)
+    )
+
+    low = np.minimum(np.minimum(b, g), r)
+    high = np.maximum(np.maximum(b, g), r)
+
+    selected = (low >= 115) & ((high - low) <= 75)
+    return selected.astype(np.uint8) * 255
+
+
+def detect_separators(frame):
+    """Find two internal dividers using stroke continuity and cell geometry.
+
+    Expected layout:
+        [geometric symbol] [value / modifiers] [datum]
+
+    Returns:
+        separators, diagnostic, neutral_mask
+    """
+    mask = neutral_mask(frame)
+    h, w = mask.shape
+
+    if h < 12 or w < 30:
+        return [], {"reason": "frame too small", "candidates": []}, mask
+
+    # Remove isolated short marks while preserving long vertical strokes.
+    kernel_height = max(5, min(11, h // 3))
+    vertical_lines = cv2.morphologyEx(
+        mask,
+        cv2.MORPH_OPEN,
+        cv2.getStructuringElement(
+            cv2.MORPH_RECT, (1, kernel_height)
+        ),
+    )
+
+    y1 = 2
+    y2 = h - 2
+
+    raw_scores = np.zeros(w, dtype=float)
+    line_scores = np.zeros(w, dtype=float)
+
+    for x in range(3, w - 3):
+        slab = mask[y1:y2, x - 1:x + 2]
+        line_slab = vertical_lines[y1:y2, x - 1:x + 2]
+
+        raw_scores[x] = (
+            float(np.mean(np.any(slab > 0, axis=1)))
+            if slab.size else 0.0
+        )
+        line_scores[x] = (
+            float(np.mean(np.any(line_slab > 0, axis=1)))
+            if line_slab.size else 0.0
+        )
+
+    # Blend raw continuity with morphological line evidence.
+    scores = 0.55 * raw_scores + 0.45 * line_scores
+
+    # Group neighboring strong columns into one divider candidate.
+    strong = [
+        x for x in range(4, w - 4)
+        if scores[x] >= MIN_DIVIDER_SCORE
+    ]
+
+    groups = []
+    for x in strong:
+        if groups and x - groups[-1][-1] <= 2:
+            groups[-1].append(x)
+        else:
+            groups.append([x])
+
+    candidates = []
+    for group in groups:
+        representative = max(group, key=lambda p: scores[p])
+        candidates.append({
+            "x": int(representative),
+            "score": round(float(scores[representative]), 4),
+        })
+
+    if len(candidates) < 2:
+        return [], {
+            "reason": "fewer than two divider candidates",
+            "candidates": candidates,
+        }, mask
+
+    # Frame proportions are deliberately broad because symbol-cell
+    # widths differ between geometric tolerance types.
+    min_symbol = max(7, int(0.35 * h))
+    max_symbol = int(1.65 * h)
+    min_value = max(10, int(0.80 * h))
+    min_datum = max(7, int(0.45 * h))
+    max_datum = int(1.70 * h)
+
+    pair_options = []
+
+    for first, second in combinations(candidates, 2):
+        x1 = first["x"]
+        x2 = second["x"]
+
+        symbol_width = x1
+        value_width = x2 - x1
+        datum_width = w - x2
+
+        if not (min_symbol <= symbol_width <= max_symbol):
+            continue
+        if value_width < min_value:
+            continue
+        if not (min_datum <= datum_width <= max_datum):
+            continue
+
+        # Prefer complete divider strokes and plausible cell proportions.
+        symbol_ratio = symbol_width / max(h, 1)
+        datum_ratio = datum_width / max(h, 1)
+
+        geometry_penalty = (
+            0.16 * abs(symbol_ratio - 0.80)
+            + 0.12 * abs(datum_ratio - 0.80)
+        )
+
+        score = (
+            first["score"]
+            + second["score"]
+            - geometry_penalty
+        )
+
+        pair_options.append({
+            "score": float(score),
+            "separators": [x1, x2],
+            "cell_widths": [
+                symbol_width, value_width, datum_width
+            ],
+            "divider_scores": [
+                first["score"], second["score"]
+            ],
+        })
+
+    if not pair_options:
+        return [], {
+            "reason": "no divider pair satisfies cell geometry",
+            "candidates": candidates,
+            "frame_size": [w, h],
+            "constraints": {
+                "min_symbol_width": min_symbol,
+                "min_value_width": min_value,
+                "min_datum_width": min_datum,
+            },
+        }, mask
+
+    pair_options.sort(key=lambda item: item["score"], reverse=True)
+    best = pair_options[0]
+
+    diagnostic = {
+        "candidates": candidates,
+        "selected_pair": best,
+        "alternative_pair_count": len(pair_options) - 1,
+        "method": "vertical continuity + cell proportions",
+        "status": "provisional_needs_visual_review",
+    }
+
+    return best["separators"], diagnostic, mask
+
+
+def split_cells(frame, separators):
+    """Create three crops while preserving glyph strokes."""
+    h, w = frame.shape[:2]
+
+    bounds = [0] + list(separators) + [w]
+    cells = []
+
+    roles = ("symbol", "value_and_modifiers", "datum")
+
+    for index, (left, right) in enumerate(
+        zip(bounds[:-1], bounds[1:])
+    ):
+        if right - left < 7:
+            continue
+
+        # Exclude outer frame strokes and divider lines.
+        x1 = min(right, left + 2)
+        x2 = max(x1, right - 2)
+        y1 = min(h, 2)
+        y2 = max(y1, h - 2)
+
+        crop = frame[y1:y2, x1:x2].copy()
+
+        if crop.size == 0:
+            continue
+
+        cells.append({
+            "index": index,
+            "role": roles[index] if index < len(roles) else "unknown",
+            "bounds": [x1, y1, x2 - x1, y2 - y1],
+            "image": crop,
+        })
+
+    return cells
+
+
+def preprocess_cell(image):
+    """Create independent OCR variants without changing the source crop."""
+    enlarged = cv2.resize(
+        image,
+        None,
+        fx=SCALE,
+        fy=SCALE,
+        interpolation=cv2.INTER_CUBIC,
+    )
+
+    gray = cv2.cvtColor(enlarged, cv2.COLOR_BGR2GRAY)
+
+    # Add a white border so OCR does not clip characters at the edges.
+    gray = cv2.copyMakeBorder(
+        gray, 12, 12, 12, 12,
+        cv2.BORDER_CONSTANT,
+        value=255,
+    )
+
+    _, binary = cv2.threshold(
+        gray,
+        0,
+        255,
+        cv2.THRESH_BINARY + cv2.THRESH_OTSU,
+    )
+
+    return {
+        "gray": gray,
+        "binary": binary,
+        "inverted": cv2.bitwise_not(binary),
+    }
+
+
+def ocr_cell(reader, variants, allowlist=None):
+    """Return raw detections with their source variant."""
+    results = []
+
+    for variant, image in variants.items():
+        kwargs = {
+            "detail": 1,
+            "paragraph": False,
+            "decoder": "greedy",
+            "min_size": 5,
+            "text_threshold": 0.30,
+            "low_text": 0.20,
+            "link_threshold": 0.20,
+        }
+
+        if allowlist:
+            kwargs["allowlist"] = allowlist
+
+        detections = reader.readtext(image, **kwargs)
+
+        for polygon, text, confidence in detections:
+            results.append({
+                "variant": variant,
+                "text": str(text).strip(),
+                "confidence": round(float(confidence), 4),
+                "bbox": [
+                    [round(float(point[0]), 1),
+                     round(float(point[1]), 1)]
+                    for point in polygon
+                ],
+            })
+
+    return results
+
+
+def numeric_candidates(detections):
+    """Extract numeric tokens without silently inventing missing decimals."""
+    results = []
+
+    for item in detections:
+        raw = item["text"].strip().replace(",", ".")
+
+        # Do not turn OCR text such as "L.055" into a trusted value.
+        tokens = re.findall(
+            r"(?<![A-Z0-9])(?:\d+(?:\.\d+)?|\.\d+)(?![A-Z0-9])",
+            raw.upper(),
+        )
+
+        for token in tokens:
+            normalized = token
+            if normalized.startswith("."):
+                normalized = "0" + normalized
+
+            try:
+                value = float(normalized)
+            except ValueError:
+                continue
+
+            results.append({
+                "value": value,
+                "raw": raw,
+                "token": normalized,
+                "confidence": item["confidence"],
+                "variant": item["variant"],
+            })
+
+    return results
+
+
+def best_numeric(detections):
+    candidates = numeric_candidates(detections)
+
+    if not candidates:
+        return None
+
+    return max(
+        candidates,
+        key=lambda item: item["confidence"],
+    )
+
+
+def best_datum(detections):
+    candidates = []
+
+    for item in detections:
+        text = re.sub(r"[^A-Z]", "", item["text"].upper())
+
+        if len(text) == 1:
+            candidates.append({
+                "value": text,
+                "raw": item["text"],
+                "confidence": item["confidence"],
+                "variant": item["variant"],
+            })
+
+    if not candidates:
+        return None
+
+    return max(candidates, key=lambda item: item["confidence"])
+
+
+def load_templates():
+    """Load the four user-provided PNG templates from the V6.3 templates folder."""
+    templates = {}
+    missing = []
+
+    for filename in TEMPLATE_FILES:
+        path = TEMPLATE_DIR / filename
+        image = cv2.imread(str(path), cv2.IMREAD_UNCHANGED)
+        if image is None:
+            missing.append(str(path))
+            continue
+        templates[path.stem] = image
+
+    assert not missing, (
+        "Missing V6.3 template image(s):\\n" + "\\n".join(missing)
+    )
+    return templates
+
+
+def foreground_mask(image):
+    """Create a polarity-consistent binary mask of the template's actual strokes.
+
+    Transparent PNGs use their alpha channel. For opaque images, Otsu thresholding
+    and border brightness determine whether dark or light pixels are the strokes.
+    The returned mask is cropped to the foreground bounding box.
+    """
+    alpha = None
+    if image.ndim == 3 and image.shape[2] == 4:
+        alpha = image[:, :, 3]
+        gray = cv2.cvtColor(image[:, :, :3], cv2.COLOR_BGR2GRAY)
+    elif image.ndim == 3:
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    else:
+        gray = image.copy()
+
+    gray = cv2.GaussianBlur(gray, (3, 3), 0)
+
+    if alpha is not None and np.count_nonzero(alpha < 245) > 0:
+        mask = (alpha > 20).astype(np.uint8) * 255
+    else:
+        _, binary = cv2.threshold(
+            gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU
+        )
+        border = np.concatenate((
+            binary[0, :], binary[-1, :], binary[:, 0], binary[:, -1]
+        ))
+        # Bright border means dark strokes on a light background.
+        if float(np.median(border)) >= 127:
+            mask = cv2.bitwise_not(binary)
+        else:
+            mask = binary
+
+    # Remove isolated specks without eroding thin CAD strokes.
+    mask = cv2.morphologyEx(
+        mask, cv2.MORPH_OPEN,
+        cv2.getStructuringElement(cv2.MORPH_RECT, (2, 2))
+    )
+
+    points = cv2.findNonZero(mask)
+    if points is None:
+        return mask
+
+    x, y, w, h = cv2.boundingRect(points)
+    if w < 2 or h < 2:
+        return mask
+    return mask[y:y + h, x:x + w]
+
+
+def _binary_shape_score(patch, template):
+    """Dice overlap of two binary foreground masks after resizing."""
+    a = patch > 0
+    b = template > 0
+    intersection = int(np.count_nonzero(a & b))
+    count_a = int(np.count_nonzero(a))
+    count_b = int(np.count_nonzero(b))
+    if count_a == 0 or count_b == 0:
+        return 0.0
+    return float((2.0 * intersection) / (count_a + count_b))
+
+
+def match_templates(cell_image, templates, allowed_names, min_score=None):
+    """Rank template matches using foreground overlap, shape agreement and location.
+
+    Very small matches are disallowed: they were a source of false positives in
+    V6.3. A match remains a candidate, never an automatic engineering assertion.
+    """
+    cell_mask = foreground_mask(cell_image)
+    ch, cw = cell_mask.shape[:2]
+    if ch < 8 or cw < 6:
+        return []
+
+    if min_score is None:
+        min_score = MIN_SYMBOL_SCORE
+
+    candidates = []
+    min_height = max(8, int(round(ch * 0.45)))
+    max_height = min(ch - 2, int(round(ch * 0.90)))
+    if max_height < min_height:
+        min_height = max(5, ch // 2)
+        max_height = ch - 2
+
+    for name in allowed_names:
+        template_image = templates.get(name)
+        if template_image is None:
+            continue
+
+        template_mask = foreground_mask(template_image)
+        th, tw = template_mask.shape[:2]
+        if th < 3 or tw < 3:
+            continue
+
+        best = None
+        for target_h in range(min_height, max_height + 1, 2):
+            target_w = max(3, int(round(tw * target_h / th)))
+            if target_h > ch or target_w > cw:
+                continue
+
+            resized = cv2.resize(
+                template_mask, (target_w, target_h),
+                interpolation=cv2.INTER_NEAREST
+            )
+
+            # CCORR focuses on foreground overlap; Dice checks whether the
+            # local patch has a similar amount and arrangement of foreground.
+            corr_map = cv2.matchTemplate(
+                cell_mask, resized, cv2.TM_CCORR_NORMED
+            )
+            if corr_map.size == 0:
+                continue
+
+            _, corr, _, location = cv2.minMaxLoc(corr_map)
+            lx, ly = int(location[0]), int(location[1])
+            patch = cell_mask[ly:ly + target_h, lx:lx + target_w]
+            dice = _binary_shape_score(patch, resized)
+
+            # Penalize cases where only a small portion of the template overlaps.
+            score = 0.45 * float(corr) + 0.55 * dice
+            if best is None or score > best["score"]:
+                best = {
+                    "score": score,
+                    "correlation": float(corr),
+                    "shape_overlap": dice,
+                    "matched_size": {
+                        "width": target_w,
+                        "height": target_h,
+                        "location": [lx, ly],
+                    },
+                    "normalized_center": [
+                        round((lx + target_w / 2) / max(cw, 1), 3),
+                        round((ly + target_h / 2) / max(ch, 1), 3),
+                    ],
+                }
+
+        if best is None:
+            continue
+
+        score = float(best["score"])
+        candidates.append({
+            "template": name,
+            "score": round(score, 4),
+            "correlation": round(best["correlation"], 4),
+            "shape_overlap": round(best["shape_overlap"], 4),
+            "matched_size": best["matched_size"],
+            "normalized_center": best["normalized_center"],
+            "status": (
+                "candidate_needs_visual_review"
+                if score >= min_score else "weak_match"
+            ),
+        })
+
+    candidates.sort(key=lambda item: item["score"], reverse=True)
+
+    # Include a margin diagnostic so close scores are explicitly marked ambiguous.
+    if candidates:
+        top_score = candidates[0]["score"]
+        second_score = candidates[1]["score"] if len(candidates) > 1 else 0.0
+        margin = round(top_score - second_score, 4)
+        candidates[0]["runner_up_margin"] = margin
+        if top_score >= min_score and margin < MIN_MATCH_MARGIN:
+            candidates[0]["status"] = "ambiguous_needs_visual_review"
+
+    return candidates
+
+
+def analyze_cells(cells, reader, templates):
+    results = []
+
+    for cell in cells:
+        variants = preprocess_cell(cell["image"])
+        role = cell["role"]
+
+        result = {
+            "index": cell["index"],
+            "role": role,
+            "bounds": cell["bounds"],
+            "numeric_candidate": None,
+            "datum_candidate": None,
+            "raw_ocr": [],
+            "status": "needs_validation",
+        }
+
+        # Use the user's own CATIA symbol crops as templates.
+        # The match is a candidate only; visual validation is still required.
+        if role == "symbol":
+            result["symbol_recognition"] = {
+                "candidates": match_templates(
+                    cell["image"], templates,
+                    ("perpendicularity", "flatness"),
+                    min_score=MIN_SYMBOL_SCORE,
+                ),
+                "status": "template_candidate_needs_validation",
+            }
+            results.append(result)
+            continue
+
+        if role == "value_and_modifiers":
+            numeric_raw = ocr_cell(
+                reader,
+                variants,
+                allowlist="0123456789.,",
+            )
+
+            # Keep a separate unrestricted pass for diagnostic purposes.
+            general_raw = ocr_cell(reader, variants)
+
+            result["numeric_ocr"] = numeric_raw
+            result["general_ocr"] = general_raw
+            result["numeric_candidate"] = best_numeric(numeric_raw)
+            # Separate threshold per modifier. V6.4 scored the expected MMC
+            # in Geometrical Tolerance.1 at 0.6119, while the no-modifier
+            # Geometrical Tolerance.2 false match scored 0.5667.
+            modifier_candidates = []
+            for template_name, threshold in (
+                ("diameter", MIN_MODIFIER_SCORE),
+                ("mmc", MIN_MMC_SCORE),
+            ):
+                template_matches = match_templates(
+                    cell["image"], templates, (template_name,),
+                    min_score=threshold,
+                )
+                modifier_candidates.extend(template_matches)
+
+            # Location prior: diameter is near the start of the value cell;
+            # MMC should appear after the numeric value. Still review visually.
+            for candidate in modifier_candidates:
+                center_x = candidate["normalized_center"][0]
+                if candidate["template"] == "diameter" and center_x > 0.42:
+                    candidate["status"] = "rejected_by_position"
+                elif candidate["template"] == "mmc" and not (0.24 <= center_x <= 0.82):
+                    candidate["status"] = "rejected_by_position"
+
+            result["modifier_symbol_candidates"] = modifier_candidates
+            result["modifier_summary"] = {
+                "plausible_candidates": [
+                    item for item in modifier_candidates
+                    if item["status"] == "candidate_needs_visual_review"
+                ],
+                "note": (
+                    "Candidates are not confirmed GD&T modifiers; inspect "
+                    "the saved cell crop before accepting them."
+                ),
+            }
+
+            result["raw_ocr"] = general_raw
+
+        elif role == "datum":
+            datum_raw = ocr_cell(
+                reader,
+                variants,
+                allowlist="ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+            )
+
+            result["datum_ocr"] = datum_raw
+            result["datum_candidate"] = best_datum(datum_raw)
+            result["raw_ocr"] = datum_raw
+
+        results.append(result)
+
+    return results
+
+
+@pytest.mark.parametrize("name", TARGETS)
+def test_nonsemantic_ocr_v65(name, reader):
+    OUT.mkdir(parents=True, exist_ok=True)
+
+    safe = safe_name(name)
+    frame, frame_box = load_frame(name)
+
+    separators, segmentation_info, mask = detect_separators(frame)
+    cells = split_cells(frame, separators)
+
+    debug = frame.copy()
+
+    for x in separators:
+        cv2.line(
+            debug,
+            (x, 0),
+            (x, frame.shape[0] - 1),
+            (0, 255, 0),
+            1,
+        )
+
+    cv2.imwrite(str(OUT / f"{safe}_segmentation.png"), debug)
+    cv2.imwrite(str(OUT / f"{safe}_mask.png"), mask)
+
+    for cell in cells:
+        cv2.imwrite(
+            str(OUT / f"{safe}_cell_{cell['index']}.png"),
+            cell["image"],
+        )
+
+    templates = load_templates()
+    cell_results = analyze_cells(cells, reader, templates)
+
+    value_cell = next(
+        (item for item in cell_results
+         if item["role"] == "value_and_modifiers"),
+        None,
+    )
+    datum_cell = next(
+        (item for item in cell_results if item["role"] == "datum"),
+        None,
+    )
+
+    report = {
+        "version": "6.5",
+        "annotation": name,
+        "frame": frame_box,
+        "frame_size": [
+            int(frame.shape[1]), int(frame.shape[0])
+        ],
+        "separators": separators,
+        "segmentation_diagnostic": segmentation_info,
+        "templates_loaded": sorted(templates.keys()),
+        "cell_count": len(cells),
+        "cells": cell_results,
+        "summary": {
+            "numeric_candidate": (
+                value_cell["numeric_candidate"] if value_cell else None
+            ),
+            "datum_candidate": (
+                datum_cell["datum_candidate"] if datum_cell else None
+            ),
+            "symbol_classification": "template_candidates_needs_validation",
+        },
+        "status": "needs_validation",
+    }
+
+    output = OUT / f"{safe}_ocr_report.json"
+    output.write_text(
+        json.dumps(report, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
+    print("\n" + json.dumps(
+        report, indent=2, ensure_ascii=False
+    ))
+
+    # These assertions validate segmentation, not OCR correctness.
+    assert len(separators) == 2, (
+        f"{name}: expected 2 internal dividers; got {separators}. "
+        f"Diagnostic: {segmentation_info}"
+    )
+
+    assert len(cells) == 3, (
+        f"{name}: expected 3 cells; got {len(cells)}"
+    )
+
+    assert output.is_file()
